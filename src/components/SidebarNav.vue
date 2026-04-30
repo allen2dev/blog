@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 const items = [
   { to: '/', label: '首页' },
   { to: '/posts', label: '全部文章' },
+  { to: '/tags/AI', label: 'AI 专题' },
 ]
 </script>
 

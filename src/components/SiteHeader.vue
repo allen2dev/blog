@@ -5,10 +5,10 @@ import { RouterLink } from 'vue-router'
 <template>
   <header class="leap-site-header">
     <h1 class="leap-site-header__title">
-      <RouterLink to="/">静态博客</RouterLink>
+      <RouterLink to="/">栈迹手记</RouterLink>
     </h1>
     <p class="leap-site-header__tagline">
-      Markdown 内容源 · Vite SSG · GitHub Pages
+      十年前端与 Node，工程化、生产力与一点 AI
     </p>
   </header>
 </template>

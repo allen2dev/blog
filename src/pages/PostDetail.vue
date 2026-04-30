@@ -11,7 +11,7 @@ const slug = computed(() => route.params.slug as string)
 const post = computed(() => postsFull.find((p) => p.slug === slug.value))
 
 useHead(() => ({
-  title: post.value ? `${post.value.title} · 静态博客` : '未找到 · 静态博客',
+  title: post.value ? `${post.value.title} · 栈迹手记` : '未找到 · 栈迹手记',
 }))
 </script>
 

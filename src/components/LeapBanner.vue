@@ -1,29 +1,26 @@
 <script lang="ts" setup>
-const repoZip =
-  'https://github.com/allen2dev/blog/archive/refs/heads/main.zip'
-const repoTar =
-  'https://github.com/allen2dev/blog/archive/refs/heads/main.tar.gz'
-const repoUrl = 'https://github.com/allen2dev/blog'
+import { RouterLink, useRouter } from 'vue-router'
+import { posts } from 'virtual:posts-data'
+
+const router = useRouter()
+
+function openRandomPost() {
+  if (!posts.length) return
+  const pick = posts[Math.floor(Math.random() * posts.length)]
+  router.push(`/posts/${pick.slug}`)
+}
 </script>
 
 <template>
   <div id="banner" class="banner-strip">
     <div class="banner-strip__inner">
-      <span id="logo" class="banner-strip__octo" aria-hidden="true" />
-      <a :href="repoUrl" class="button fork" target="_blank" rel="noopener noreferrer">
-        <strong>在 GitHub 上查看</strong>
-      </a>
-      <div class="downloads">
-        <span>下载：</span>
-        <ul>
-          <li>
-            <a :href="repoZip" class="button">ZIP</a>
-          </li>
-          <li>
-            <a :href="repoTar" class="button">TAR</a>
-          </li>
-        </ul>
-      </div>
+      <span class="banner-strip__mark" aria-hidden="true" />
+      <span class="banner-strip__label">快速入口</span>
+      <RouterLink to="/posts" class="button">全部文章</RouterLink>
+      <button type="button" class="button btn-random" @click="openRandomPost">
+        随机一篇
+      </button>
+      <RouterLink to="/tags/AI" class="button">AI 专题</RouterLink>
     </div>
   </div>
 </template>
@@ -49,7 +46,16 @@ const repoUrl = 'https://github.com/allen2dev/blog'
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.banner-strip__label {
+  font-size: 12px;
+  color: #9d7f0d;
+  text-transform: uppercase;
+  text-shadow: rgba(255, 255, 255, 0.2) 0 1px 0;
+  margin-right: 4px;
 }
 
 .banner-strip .button {
@@ -60,81 +66,53 @@ const repoUrl = 'https://github.com/allen2dev/blog'
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 1px 1px rgba(0, 0, 0, 0.1);
   background-color: #ffe788;
-  padding: 10px 12px;
+  padding: 8px 12px;
   line-height: 14px;
   font-size: 14px;
   color: #333;
   font-weight: bold;
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .banner-strip .button:hover {
   background: #ffeca0;
 }
 
-.banner-strip .fork {
+.btn-random {
   flex: 0 0 auto;
 }
 
-.downloads {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.downloads span {
-  line-height: 1;
-  font-size: 12px;
-  color: #9d7f0d;
-  text-transform: uppercase;
-  text-shadow: rgba(255, 255, 255, 0.2) 0 1px 0;
-  margin-right: 4px;
-}
-
-.downloads ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.downloads li {
-  display: inline-block;
-}
-
-.banner-strip__octo {
+.banner-strip__mark {
   position: absolute;
-  right: 8px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  height: 36px;
-  width: 36px;
-  display: block;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E")
+  height: 28px;
+  width: 28px;
+  opacity: 0.35;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='1.5'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3Cpath d='M8 7h8M8 11h6'/%3E%3C/svg%3E")
     center / contain no-repeat;
 }
 
 @media print, screen and (max-width: 720px) {
   .banner-strip {
     top: 80px;
+    height: auto;
+    min-height: 50px;
+    padding: 6px 0;
   }
 
   .banner-strip__inner {
-    padding-right: 48px;
+    padding-right: 40px;
   }
 }
 
 @media print, screen and (max-width: 480px) {
   .banner-strip {
     display: none;
-  }
-
-  .banner-strip__inner {
-    padding-right: 12px;
   }
 }
 </style>

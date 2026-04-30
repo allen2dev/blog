@@ -1,6 +1,8 @@
-# 静态博客（Vue 3 + Vite SSG）
+# 栈迹手记（Vue 3 + Vite SSG）
 
 基于 **Markdown** 内容源的静态站点：构建时解析 `posts/`，使用 **vite-ssg** 预渲染 HTML，可部署到 **GitHub Pages**（`gh-pages` 分支）。
+
+本站演示文案由示例文章构成；站点标题与横幅快捷入口可在源码中自定义。
 
 ## 功能
 

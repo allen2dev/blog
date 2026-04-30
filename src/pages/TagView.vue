@@ -13,7 +13,7 @@ const filtered = computed(() =>
 )
 
 useHead(() => ({
-  title: `标签：${tag.value} · 静态博客`,
+  title: `标签：${tag.value} · 栈迹手记`,
 }))
 
 function formatDate(d: string) {

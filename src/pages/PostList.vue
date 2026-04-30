@@ -5,7 +5,7 @@ import { useHead } from '@unhead/vue'
 import Pagination from '../components/Pagination.vue'
 import { posts, postsPerPage } from 'virtual:posts-data'
 
-useHead({ title: '文章列表 · 静态博客' })
+useHead({ title: '文章列表 · 栈迹手记' })
 
 const route = useRoute()
 const router = useRouter()

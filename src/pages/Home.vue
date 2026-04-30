@@ -1,22 +1,19 @@
 <script lang="ts" setup>
 import { useHead } from '@unhead/vue'
 
-useHead({ title: '首页 · 静态博客' })
+useHead({ title: '首页 · 栈迹手记' })
 </script>
 
 <template>
   <div class="home-intro">
     <p>
-      文本支持 <strong>粗体</strong>、<em>斜体</em>、<del>删除线</del>。
+      你好，这里是<strong>栈迹手记</strong>——一名写了十余年<strong>前端</strong>与<strong>Node</strong>的开发者随手记下的一线经验：工程化、运行时、团队协作，以及近两三年和<strong>AI</strong>打交道的一点心得。
     </p>
     <p>
-      <RouterLink to="/posts">前往文章列表</RouterLink>。
+      <RouterLink to="/posts">浏览全部文章</RouterLink>，或用顶部黄条里的<strong>随机一篇</strong>、<strong>AI 专题</strong>快速跳转。
     </p>
     <p>
-      段落之间应有留白。本站基于 Markdown 内容源，构建阶段生成静态 HTML，部署于 GitHub Pages。
-    </p>
-    <p>
-      欢迎在侧栏浏览「全部文章」，或通过上方横幅下载源码压缩包。
+      正文均为 Markdown，构建时生成静态页面；技术栈为 Vue 3、Vite SSG，托管于 GitHub Pages。
     </p>
   </div>
 </template>
