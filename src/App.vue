@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import SiteHeader from './components/SiteHeader.vue'
+import LeapBanner from './components/LeapBanner.vue'
+import SidebarNav from './components/SidebarNav.vue'
 import SiteFooter from './components/SiteFooter.vue'
 </script>
 
 <template>
-  <div class="layout">
+  <div class="layout leap-layout">
     <SiteHeader />
-    <main class="main-area">
-      <div class="container paper">
+    <LeapBanner />
+    <div class="wrapper leap-wrapper">
+      <SidebarNav />
+      <section class="leap-section">
         <RouterView />
-      </div>
-    </main>
+      </section>
+    </div>
     <SiteFooter />
   </div>
 </template>

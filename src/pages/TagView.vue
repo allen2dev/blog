@@ -31,7 +31,7 @@ function formatDate(d: string) {
 <template>
   <div>
     <header class="page-head">
-      <h1 class="page-title">标签：{{ tag }}</h1>
+      <h1>标签：{{ tag }}</h1>
       <p class="page-desc">共 {{ filtered.length }} 篇</p>
     </header>
 
@@ -55,77 +55,58 @@ function formatDate(d: string) {
 
 <style scoped>
 .page-head {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 20px;
 }
 
-.page-title {
-  margin: 0 0 0.35rem;
-  font-size: 1.65rem;
-  color: var(--color-heading);
+.page-head h1 {
+  margin-bottom: 6px;
 }
 
 .page-desc {
   margin: 0;
-  color: var(--color-muted);
-  font-size: 0.95rem;
+  font-size: 13px;
+  color: #666;
 }
 
 .post-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .post-card {
-  padding: 1.15rem 0;
-  border-bottom: 1px dashed var(--color-border);
-}
-
-.post-card:last-child {
-  border-bottom: none;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .date {
   display: block;
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  margin-bottom: 0.35rem;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
 }
 
 .post-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  margin: 0;
+  font-size: 18px;
 }
 
 .post-title a {
-  color: var(--color-link);
-  text-decoration: none;
-}
-
-.post-title a:hover {
-  color: var(--color-link-hover);
-  text-decoration: underline;
+  color: #4276b6;
+  font-weight: 700;
 }
 
 .excerpt {
-  margin: 0;
-  line-height: 1.55;
-  color: var(--color-muted);
-  font-size: 0.95rem;
+  margin: 8px 0 0;
+  color: #666;
+  font-size: 13px;
 }
 
 .empty {
-  color: var(--color-muted);
+  color: #666;
 }
 
 .back {
-  margin-top: 2rem;
-}
-
-.back a {
-  color: var(--color-link);
+  margin-top: 24px;
 }
 </style>

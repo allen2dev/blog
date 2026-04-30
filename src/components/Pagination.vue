@@ -46,25 +46,28 @@ function go(p: number) {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--color-border);
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e5e5;
 }
 
 .pager-btn {
-  padding: 0.45rem 1rem;
-  font-size: 0.9rem;
+  padding: 8px 14px;
+  font-size: 13px;
   cursor: pointer;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 4px;
-  background: linear-gradient(180deg, #fff 0%, var(--color-btn-bg) 100%);
-  color: var(--color-text);
+  border: 1px solid #dba500;
+  border-radius: 2px;
+  background: linear-gradient(#ffe788, #ffce38);
+  color: #333;
+  font-weight: bold;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 1px rgba(0, 0, 0, 0.08);
 }
 
 .pager-btn:hover:not(:disabled) {
-  border-color: var(--color-link);
-  color: var(--color-link);
+  background: #ffeca0;
 }
 
 .pager-btn:disabled {
@@ -73,7 +76,7 @@ function go(p: number) {
 }
 
 .pager-info {
-  font-size: 0.9rem;
-  color: var(--color-muted);
+  font-size: 13px;
+  color: #666;
 }
 </style>

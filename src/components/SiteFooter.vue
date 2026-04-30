@@ -1,30 +1,50 @@
 <script lang="ts" setup></script>
 
 <template>
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="muted">
-        由 Vue 3 + Vite SSG 构建 · 部署于 GitHub Pages
-      </p>
-    </div>
+  <footer class="leap-site-footer">
+    <p>
+      Static blog · Vue 3 &amp; vite-ssg
+    </p>
   </footer>
 </template>
 
 <style scoped>
-.site-footer {
-  margin-top: auto;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--color-border);
-  background: var(--color-footer-bg);
+.leap-site-footer {
+  width: 180px;
+  position: fixed;
+  left: 50%;
+  margin-left: -530px;
+  bottom: 20px;
+  text-align: right;
+  line-height: 16px;
+  font-size: 12px;
+  color: #666;
+  z-index: 1;
 }
 
-.footer-inner {
-  text-align: center;
-}
-
-.muted {
+.leap-site-footer p {
   margin: 0;
-  font-size: 0.85rem;
-  color: var(--color-muted);
+}
+
+@media print, screen and (max-width: 1060px) {
+  .leap-site-footer {
+    text-align: center;
+    margin: 20px auto;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: auto;
+  }
+}
+
+@media print, screen and (max-height: 680px) {
+  .leap-site-footer {
+    text-align: center;
+    margin: 20px auto;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: auto;
+  }
 }
 </style>

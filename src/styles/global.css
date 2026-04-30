@@ -1,23 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Copse&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Leap Day–inspired design (visual parity with pages-themes leap-day demo; original CSS). */
 
 :root {
-  --color-bg: #e8f0f8;
-  --color-paper: #fafafa;
-  --color-header-top: #cfe7ff;
-  --color-header-bottom: #b8d4f0;
-  --color-footer-bg: #dfeaf5;
-  --color-border: #c9d6e4;
-  --color-border-strong: #a8b8cc;
-  --color-text: #2c2c2c;
-  --color-heading: #1a3a5c;
-  --color-muted: #5a6570;
-  --color-link: #2a6abf;
-  --color-link-hover: #1a4d99;
-  --color-accent-dark: #1a4d8f;
-  --color-tag-bg: #e3eef9;
-  --color-tag-bg-hover: #d4e4f7;
-  --color-btn-bg: #eef4fb;
-  --font-sans: 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Quattrocento Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Copse', Georgia, 'Times New Roman', serif;
+  --leap-blue: #4276b6;
+  --leap-text: #2b2b2b;
+  --leap-heading: #333;
+  --leap-muted: #666;
+  --leap-h2: #393939;
+  --leap-h3456: #666;
+  --leap-link: #4276b6;
+  --leap-yellow: #ffcc00;
 }
 
 *,
@@ -27,185 +22,253 @@
 }
 
 html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  padding: 0 0 20px;
+  font:
+    300 14px/22px var(--font-body),
+    sans-serif;
+  color: var(--leap-text);
+  font-weight: 300;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    ),
+    #eae6d1;
   min-height: 100vh;
-  font-family: var(--font-sans);
-  color: var(--color-text);
-  background: var(--color-bg);
-  line-height: 1.6;
 }
 
 #app {
   min-height: 100vh;
 }
 
-.layout {
+.leap-layout {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-.main-area {
-  flex: 1;
-  padding: 1.5rem 0 2rem;
+.leap-layout .wrapper {
+  width: 650px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
 }
 
-.container {
-  width: 100%;
-  max-width: 52rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+.leap-sidebar {
+  width: 230px;
+  position: fixed;
+  top: 220px;
+  left: 50%;
+  margin-left: -580px;
+  text-align: right;
+  z-index: 2;
 }
 
-.paper {
-  background: var(--color-paper);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(30, 60, 90, 0.08);
-  padding: 1.75rem 1.5rem 2rem;
+.leap-section {
+  width: 590px;
+  max-width: 100%;
+  padding: 30px 30px 50px;
+  margin: 20px auto;
+  margin-top: 190px;
+  position: relative;
+  background: #fbfbfb;
+  border-radius: 3px;
+  border: 1px solid #cbcbcb;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.09),
+    inset 0 0 2px 2px rgba(255, 255, 255, 0.5),
+    inset 0 0 5px 5px rgba(255, 255, 255, 0.4);
 }
 
-@media (max-width: 640px) {
-  .paper {
-    padding: 1.25rem 1rem 1.5rem;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-  }
+.leap-section img {
+  max-width: 100%;
 }
 
-/* ---- Markdown body (leap-day-ish typography) ---- */
-.markdown-body {
-  font-size: 1rem;
-  color: var(--color-text);
+/* Typography inside white card (matches leap-day section) */
+.leap-section h1,
+.leap-section h2,
+.leap-section h3,
+.leap-section h4,
+.leap-section h5,
+.leap-section h6 {
+  font-family: var(--font-display), serif;
+  margin: 0 0 10px;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4 {
-  font-family: var(--font-sans);
-  color: var(--color-heading);
-  margin-top: 1.5rem;
-  margin-bottom: 0.65rem;
-  font-weight: 600;
-  line-height: 1.35;
+.leap-section h1 {
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--leap-heading);
 }
 
-.markdown-body h1 {
-  font-size: 1.65rem;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.35rem;
+.leap-section h2 {
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--leap-h2);
 }
 
-.markdown-body h2 {
-  font-size: 1.35rem;
+.leap-section h3,
+.leap-section h4,
+.leap-section h5,
+.leap-section h6 {
+  color: var(--leap-h3456);
 }
 
-.markdown-body h3 {
-  font-size: 1.15rem;
+.leap-section h3 {
+  font-size: 18px;
+  line-height: 24px;
 }
 
-.markdown-body p {
-  margin: 0 0 1rem;
+.leap-section p,
+.leap-section ul,
+.leap-section ol,
+.leap-section table,
+.leap-section pre,
+.leap-section dl {
+  margin: 0 0 20px;
 }
 
-.markdown-body a {
-  color: var(--color-link);
+.leap-section a {
+  color: var(--leap-link);
+  font-weight: 400;
+  text-decoration: none;
 }
 
-.markdown-body a:hover {
-  color: var(--color-link-hover);
+.leap-section a:hover {
+  text-decoration: underline;
 }
 
-.markdown-body ul,
-.markdown-body ol {
-  margin: 0 0 1rem;
-  padding-left: 1.5rem;
+.leap-section ul {
+  list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='2' fill='%234276b6'/%3E%3C/svg%3E");
+  padding: 0 0 0 40px;
 }
 
-.markdown-body blockquote {
-  margin: 0 0 1rem;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid var(--color-border-strong);
-  background: #f0f5fa;
-  color: var(--color-muted);
+.leap-section ol {
+  padding-left: 40px;
 }
 
-.markdown-body table {
+.leap-section strong {
+  font-weight: bold;
+  color: var(--leap-heading);
+}
+
+.leap-section blockquote {
+  border-left: 1px solid var(--leap-yellow);
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-style: italic;
+  color: var(--leap-muted);
+}
+
+/* Inline code: dark pill like leap-day */
+.leap-section code {
+  font-family:
+    'Lucida Sans', Monaco, 'Bitstream Vera Sans Mono', 'Lucida Console', monospace;
+  font-size: 13px;
+  color: #efefef;
+  text-shadow: 0 1px 0 #000;
+  margin: 0 4px;
+  padding: 2px 6px;
+  background: #333;
+  border-radius: 2px;
+}
+
+.leap-section pre {
+  padding: 8px 15px;
+  background: #333;
+  border-radius: 3px;
+  border: 1px solid #c7c7c7;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+.leap-section pre code {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #d0d0d0;
+  text-shadow: none;
+  font-size: 13px;
+}
+
+.leap-section hr {
+  border: 0;
+  outline: none;
+  height: 11px;
+  margin: 0 0 20px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ddd,
+    #ddd 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.85;
+}
+
+.leap-section table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
 }
 
-.markdown-body th,
-.markdown-body td {
-  border: 1px solid var(--color-border);
-  padding: 0.45rem 0.65rem;
+.leap-section th {
+  text-align: left;
+  padding: 5px 10px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #444;
 }
 
-.markdown-body th {
-  background: #e8f0f8;
-  font-weight: 600;
+.leap-section td {
+  text-align: left;
+  padding: 5px 10px;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid var(--leap-yellow);
 }
 
-.markdown-body hr {
-  border: none;
-  border-top: 1px solid var(--color-border);
-  margin: 1.5rem 0;
+.leap-section td:first-child {
+  border-left: 1px solid var(--leap-yellow);
 }
 
-.markdown-body pre {
-  margin: 0 0 1rem;
-  padding: 1rem;
-  overflow-x: auto;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background: #f6f8fa;
-  font-size: 0.85rem;
-  line-height: 1.45;
+.leap-section dt {
+  color: #444;
+  font-weight: 700;
 }
 
-.markdown-body code {
-  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
-}
-
-.markdown-body :not(pre) > code {
-  padding: 0.15rem 0.35rem;
-  border-radius: 3px;
-  background: #eef2f6;
-  font-size: 0.88em;
+/* Markdown article body (detail pages) */
+.markdown-body {
+  font-size: 14px;
+  line-height: 22px;
 }
 
 .markdown-body .header-anchor {
-  margin-left: 0.35rem;
-  text-decoration: none;
-  opacity: 0.45;
+  margin-left: 6px;
+  color: var(--leap-muted);
   font-weight: normal;
+  text-decoration: none;
 }
 
 .markdown-body .header-anchor:hover {
-  opacity: 1;
+  color: var(--leap-link);
 }
 
-/* Prism (markdown-it-prism) */
+/* Prism tokens on dark pre background */
 .markdown-body .token.comment,
 .markdown-body .token.prolog,
 .markdown-body .token.doctype,
 .markdown-body .token.cdata {
-  color: #6a737d;
+  color: #888;
 }
 
 .markdown-body .token.punctuation {
-  color: #393a34;
+  color: #d0d0d0;
 }
 
 .markdown-body .token.property,
@@ -215,7 +278,7 @@ body {
 .markdown-body .token.constant,
 .markdown-body .token.symbol,
 .markdown-body .token.deleted {
-  color: #005cc5;
+  color: #6a9fb5;
 }
 
 .markdown-body .token.selector,
@@ -224,7 +287,7 @@ body {
 .markdown-body .token.char,
 .markdown-body .token.builtin,
 .markdown-body .token.inserted {
-  color: #22863a;
+  color: #90a959;
 }
 
 .markdown-body .token.operator,
@@ -232,22 +295,70 @@ body {
 .markdown-body .token.url,
 .markdown-body .language-css .token.string,
 .markdown-body .style .token.string {
-  color: #d73a49;
+  color: #d0d0d0;
 }
 
 .markdown-body .token.atrule,
 .markdown-body .token.attr-value,
 .markdown-body .token.keyword {
-  color: #d73a49;
+  color: #aa759f;
 }
 
 .markdown-body .token.function,
 .markdown-body .token.class-name {
-  color: #6f42c1;
+  color: #f4bf75;
 }
 
 .markdown-body .token.regex,
 .markdown-body .token.important,
 .markdown-body .token.variable {
-  color: #e36209;
+  color: #d28445;
+}
+
+/* --- Responsive (aligned with leap-day breakpoints) --- */
+@media print, screen and (max-width: 1060px) {
+  .leap-sidebar {
+    display: none;
+  }
+
+  .leap-layout .wrapper {
+    width: auto;
+    margin: 0;
+    padding: 0 12px;
+  }
+
+  .leap-section {
+    border: 1px solid #e5e5e5;
+    border-width: 1px 0;
+    padding: 20px 0;
+    margin: 190px auto 20px;
+    max-width: 600px;
+    box-shadow: none;
+  }
+}
+
+@media print, screen and (max-width: 720px) {
+  body {
+    word-wrap: break-word;
+  }
+
+  .leap-section {
+    margin-top: 130px;
+    margin-bottom: 0;
+    width: auto;
+  }
+}
+
+@media print, screen and (max-width: 480px) {
+  .leap-section {
+    margin-top: 16px;
+  }
+}
+
+@media print {
+  body {
+    padding: 0.4in;
+    font-size: 12pt;
+    color: #444;
+  }
 }
