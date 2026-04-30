@@ -9,6 +9,12 @@ import markdownItPrism from 'markdown-it-prism'
 const VIRTUAL_ID = 'virtual:posts-data'
 const RESOLVED = '\0' + VIRTUAL_ID
 
+export interface PostHeading {
+  id: string
+  text: string
+  level: number
+}
+
 export interface PostFrontmatter {
   title: string
   date: string
@@ -20,6 +26,25 @@ export interface PostFrontmatter {
 export interface PostEntry extends PostFrontmatter {
   slug: string
   html: string
+  headings: PostHeading[]
+}
+
+function stripHtmlTags(fragment: string): string {
+  return fragment.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+}
+
+/** Extract h2–h6 with id from rendered HTML (markdown-it-anchor). */
+function extractHeadings(html: string): PostHeading[] {
+  const headings: PostHeading[] = []
+  const re = /<h([2-6])[^>]*\bid="([^"]*)"[^>]*>([\s\S]*?)<\/h\1>/gi
+  let m: RegExpExecArray | null
+  while ((m = re.exec(html)) !== null) {
+    const level = Number(m[1])
+    const id = m[2]
+    const text = stripHtmlTags(m[3])
+    if (id && text) headings.push({ id, text, level })
+  }
+  return headings
 }
 
 function createMarkdown() {
@@ -52,6 +77,7 @@ function scanPosts(root: string): PostEntry[] {
     const title = fm.title ?? slug
     const date = fm.date ?? ''
     const html = md.render(content)
+    const headings = extractHeadings(html)
     posts.push({
       slug,
       title,
@@ -60,6 +86,7 @@ function scanPosts(root: string): PostEntry[] {
       tags: Array.isArray(fm.tags) ? fm.tags.map(String) : [],
       category: fm.category,
       html,
+      headings,
     })
   }
 

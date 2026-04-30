@@ -1,6 +1,12 @@
 /// <reference types="vite/client" />
 
 declare module 'virtual:posts-data' {
+  export interface PostHeading {
+    id: string
+    text: string
+    level: number
+  }
+
   export interface PostSummary {
     slug: string
     title: string
@@ -8,6 +14,7 @@ declare module 'virtual:posts-data' {
     description?: string
     tags?: string[]
     category?: string
+    headings?: PostHeading[]
   }
 
   export interface PostFull extends PostSummary {

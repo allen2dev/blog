@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import SiteHeader from './components/SiteHeader.vue'
 import LeapBanner from './components/LeapBanner.vue'
-import SidebarNav from './components/SidebarNav.vue'
+import SidebarShell from './components/SidebarShell.vue'
 import SiteFooter from './components/SiteFooter.vue'
 </script>
 
@@ -10,7 +10,7 @@ import SiteFooter from './components/SiteFooter.vue'
     <SiteHeader />
     <LeapBanner />
     <div class="wrapper leap-wrapper">
-      <SidebarNav />
+      <SidebarShell />
       <section class="leap-section">
         <RouterView />
       </section>
