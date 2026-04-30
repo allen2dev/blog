@@ -30,10 +30,13 @@
   .leap-site-footer {
     text-align: center;
     margin: 20px auto;
+    margin-bottom: max(20px, env(safe-area-inset-bottom, 0px));
     position: relative;
     left: auto;
     bottom: auto;
     width: auto;
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
   }
 }
 
@@ -41,10 +44,13 @@
   .leap-site-footer {
     text-align: center;
     margin: 20px auto;
+    margin-bottom: max(20px, env(safe-area-inset-bottom, 0px));
     position: relative;
     left: auto;
     bottom: auto;
     width: auto;
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
   }
 }
 </style>

@@ -42,7 +42,7 @@ function openRandomPost() {
   position: relative;
   max-width: 650px;
   margin: 0 auto;
-  padding: 0 12px;
+  padding: 0 max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
   height: 100%;
   display: flex;
   align-items: center;
@@ -87,7 +87,7 @@ function openRandomPost() {
 
 .banner-strip__mark {
   position: absolute;
-  right: 10px;
+  right: max(10px, env(safe-area-inset-right, 0px));
   top: 50%;
   transform: translateY(-50%);
   height: 28px;
@@ -106,7 +106,7 @@ function openRandomPost() {
   }
 
   .banner-strip__inner {
-    padding-right: 40px;
+    padding-right: max(40px, calc(28px + env(safe-area-inset-right, 0px)));
   }
 }
 

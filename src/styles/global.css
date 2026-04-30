@@ -13,6 +13,10 @@
   --leap-h3456: #666;
   --leap-link: #4276b6;
   --leap-yellow: #ffcc00;
+  /* Mobile / notch: minimum gutter + safe area (iPhone home indicator etc.) */
+  --gutter-x: max(1rem, env(safe-area-inset-left, 0px));
+  --gutter-x-right: max(1rem, env(safe-area-inset-right, 0px));
+  --gutter-y-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
 }
 
 *,
@@ -28,7 +32,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0 0 20px;
+  padding: 0 0 var(--gutter-y-bottom);
   font:
     300 14px/22px var(--font-body),
     sans-serif;
@@ -188,6 +192,8 @@ body {
   border: 1px solid #c7c7c7;
   overflow: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 
 .leap-section pre code {
@@ -323,17 +329,24 @@ body {
 
   .leap-layout .wrapper {
     width: auto;
-    margin: 0;
-    padding: 0 12px;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
   }
 
   .leap-section {
     border: 1px solid #e5e5e5;
     border-width: 1px 0;
-    padding: 20px 0;
-    margin: 190px auto 20px;
-    max-width: 600px;
+    /* Explicit sides: content gutter + safe-area (fixes flush text on iPhone) */
+    padding-top: 22px;
+    padding-right: max(1.125rem, env(safe-area-inset-right, 0px));
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(1.125rem, env(safe-area-inset-left, 0px));
+    margin: 190px auto 0;
+    max-width: min(600px, 100%);
     box-shadow: none;
+    border-radius: 6px;
   }
 }
 
@@ -346,12 +359,31 @@ body {
     margin-top: 130px;
     margin-bottom: 0;
     width: auto;
+    /* Slightly larger tap-friendly reading measure on phones */
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+  }
+
+  .markdown-body {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .leap-section ul {
+    padding-left: 1.5rem;
+  }
+
+  .leap-section ol {
+    padding-left: 1.5rem;
   }
 }
 
 @media print, screen and (max-width: 480px) {
   .leap-section {
-    margin-top: 16px;
+    margin-top: max(12px, env(safe-area-inset-top, 0px));
+    padding-top: 1.25rem;
+    padding-left: max(1.125rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.125rem, env(safe-area-inset-right, 0px));
   }
 }
 

@@ -16,6 +16,9 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 .leap-site-header {
   padding: 25px 20px 40px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-top: max(25px, env(safe-area-inset-top, 0px));
   margin: 0;
   position: fixed;
   top: 0;
@@ -62,6 +65,9 @@ import { RouterLink } from 'vue-router'
 @media print, screen and (max-width: 720px) {
   .leap-site-header {
     padding: 20px;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-top: max(20px, env(safe-area-inset-top, 0px));
   }
 
   .leap-site-header__title {
@@ -77,7 +83,10 @@ import { RouterLink } from 'vue-router'
 @media print, screen and (max-width: 480px) {
   .leap-site-header {
     position: relative;
-    padding: 8px 0;
+    padding: 12px 16px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-top: max(12px, env(safe-area-inset-top, 0px));
     min-height: 0;
   }
 
