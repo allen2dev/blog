@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%80%E3%80%81%E7%BC%96%E6%8E%92%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F" data-v-fd403cd9="">一、编排意味着什么？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%8C%E3%80%81%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%95%99%E7%BB%99%E8%84%9A%E6%9C%AC%EF%BC%8C%E6%8E%A2%E7%B4%A2%E7%95%99%E7%BB%99%E6%A8%A1%E5%9E%8B" data-v-fd403cd9="">二、确定性留给脚本，探索留给模型 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%89%E3%80%81%E5%A5%91%E7%BA%A6%E9%94%81%E4%BD%8F%E8%BE%B9%E7%95%8C%EF%BC%9Aopenapi%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81feature-flag" data-v-fd403cd9="">三、契约锁住边界：OpenAPI、类型、feature flag #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E5%9B%9B%E3%80%81mcp-%E4%B8%8E%E6%8F%92%E4%BB%B6%E5%AE%87%E5%AE%99%EF%BC%9A%E5%85%B4%E5%A5%8B%E4%B8%8E%E7%BB%B4%E6%8A%A4%E6%88%90%E6%9C%AC" data-v-fd403cd9="">四、MCP 与插件宇宙：兴奋与维护成本 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%94%E3%80%81%E4%BA%BA%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A-orchestrator-%E4%BB%8D%E6%98%AF%E5%B7%A5%E7%A8%8B%E5%B8%88" data-v-fd403cd9="">五、人的角色： orchestrator 仍是工程师 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">Agent 与工作流编排：2026 年我们仍未绕过确定性脚本</h1><div class="meta" data-v-1982a48e=""><time datetime="2026-01-15T00:00:00.000Z" data-v-1982a48e="">2026年1月15日</time><span class="meta-item" data-v-1982a48e="">AI 与实践</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/AI" class="tag" data-v-1982a48e="">AI</a><a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96" class="tag" data-v-1982a48e="">工程化</a><a href="/blog/tags/Node.js" class="tag" data-v-1982a48e="">Node.js</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>近两三年行业最热的关键词之一是「Agent」——模型不再只输出文本，而是调用搜索、执行命令、改写仓库文件。听起来像程序员的终极外挂；落地之后最常见的痛点却是：<strong>谁在深夜替一键串联的三步副作用买单？</strong></p>
+<p>这篇文章不写 hype，只写一条朴素结论：<strong>编排能力越强，边界纪律越重要</strong>。老脚本手写年代犯的错，只是在更大音量下重复。</p>
+<hr>
+<h2 id="%E4%B8%80%E3%80%81%E7%BC%96%E6%8E%92%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F" tabindex="-1">一、编排意味着什么？ <a class="header-anchor" href="#%E4%B8%80%E3%80%81%E7%BC%96%E6%8E%92%E6%84%8F%E5%91%B3%E7%9D%80%E4%BB%80%E4%B9%88%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>所谓编排，是把若干步骤连成管线：<strong>读上下文 → 决策 → 调用工具 → 观察反馈</strong>。问题在于：<strong>哪些步骤是幂等的？哪些是不可逆的？</strong> 若这三件事没在设计文档里写清，Agent 再聪明也只是更快的 shotgun。</p>
+<hr>
+<h2 id="%E4%BA%8C%E3%80%81%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%95%99%E7%BB%99%E8%84%9A%E6%9C%AC%EF%BC%8C%E6%8E%A2%E7%B4%A2%E7%95%99%E7%BB%99%E6%A8%A1%E5%9E%8B" tabindex="-1">二、确定性留给脚本，探索留给模型 <a class="header-anchor" href="#%E4%BA%8C%E3%80%81%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%95%99%E7%BB%99%E8%84%9A%E6%9C%AC%EF%BC%8C%E6%8E%A2%E7%B4%A2%E7%95%99%E7%BB%99%E6%A8%A1%E5%9E%8B" aria-hidden="true">#</a></h2>
+<p>我仍然坚持：</p>
+<ul>
+<li><strong>格式化、lint、构建、部署到 staging</strong>——脚本化、CI 化；</li>
+<li><strong>接口调研、日志归纳、草稿生成</strong>——可以给模型更大自由度，但要在分支与预览环境。</li>
+</ul>
+<p>这一条分界线一旦被涂抹，你会得到「周末某人让 Agent 改了 main」的传奇事故——技术上允许，组织上不原谅。</p>
+<hr>
+<h2 id="%E4%B8%89%E3%80%81%E5%A5%91%E7%BA%A6%E9%94%81%E4%BD%8F%E8%BE%B9%E7%95%8C%EF%BC%9Aopenapi%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81feature-flag" tabindex="-1">三、契约锁住边界：OpenAPI、类型、feature flag <a class="header-anchor" href="#%E4%B8%89%E3%80%81%E5%A5%91%E7%BA%A6%E9%94%81%E4%BD%8F%E8%BE%B9%E7%95%8C%EF%BC%9Aopenapi%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81feature-flag" aria-hidden="true">#</a></h2>
+<p>模型不懂得你们的合规边界；<strong>契约层（类型、OpenAPI、权限中间件）才是真正的守门员</strong>。Agent 生成的代码若绕过契约，CI 应该红——这不是刁难，而是救生。</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run build <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> run preview
+</code></pre>
+<p>这类命令看似简单，却是「最小可用验收」：<strong>起码静态站点还能生成</strong>，不至于演示赢了、合并炸了。</p>
+<hr>
+<h2 id="%E5%9B%9B%E3%80%81mcp-%E4%B8%8E%E6%8F%92%E4%BB%B6%E5%AE%87%E5%AE%99%EF%BC%9A%E5%85%B4%E5%A5%8B%E4%B8%8E%E7%BB%B4%E6%8A%A4%E6%88%90%E6%9C%AC" tabindex="-1">四、MCP 与插件宇宙：兴奋与维护成本 <a class="header-anchor" href="#%E5%9B%9B%E3%80%81mcp-%E4%B8%8E%E6%8F%92%E4%BB%B6%E5%AE%87%E5%AE%99%EF%BC%9A%E5%85%B4%E5%A5%8B%E4%B8%8E%E7%BB%B4%E6%8A%A4%E6%88%90%E6%9C%AC" aria-hidden="true">#</a></h2>
+<p>Model Context Protocol 一类扩展降低了集成门槛，却也引入新问题：<strong>权限模型碎片化</strong>。每个连接器都是一个潜在的 lateral movement 点——安全评审不能只盯着模型本体。</p>
+<hr>
+<h2 id="%E4%BA%94%E3%80%81%E4%BA%BA%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A-orchestrator-%E4%BB%8D%E6%98%AF%E5%B7%A5%E7%A8%8B%E5%B8%88" tabindex="-1">五、人的角色： orchestrator 仍是工程师 <a class="header-anchor" href="#%E4%BA%94%E3%80%81%E4%BA%BA%E7%9A%84%E8%A7%92%E8%89%B2%EF%BC%9A-orchestrator-%E4%BB%8D%E6%98%AF%E5%B7%A5%E7%A8%8B%E5%B8%88" aria-hidden="true">#</a></h2>
+<p>未来会更吵：更多 agent、更多 MCP server。稀缺的不是会按 Tab 的人，而是能分清「何时自动化、何时人肉拍板」的人——这和 2016 年说「先想清楚再写代码」并无区别，只是键盘旁多了一只替你打字的手。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>Agent 不会免除软件工程的基本定律：<strong>可观测性、回滚策略、版本管理</strong>。把它们写进流程里，模型才能更好的 acceleration——而不是 acceleration towards outage。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

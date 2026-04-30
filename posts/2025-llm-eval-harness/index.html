@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%93%E6%84%9F%E4%B8%8D%E5%A4%9F%E7%94%A8" data-v-fd403cd9="">一、为什么体感不够用 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%8C%E3%80%81golden-questions%EF%BC%9A%E5%AE%81%E5%8F%AF%E5%B0%91%EF%BC%8C%E4%BD%86%E8%A6%81%E5%88%86%E5%B1%82" data-v-fd403cd9="">二、Golden questions：宁可少，但要分层 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%89%E3%80%81%E8%84%9A%E6%9C%AC%E5%85%88%E4%BA%8E%E4%BB%AA%E8%A1%A8%E7%9B%98" data-v-fd403cd9="">三、脚本先于仪表盘 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E5%9B%9B%E3%80%81%E5%B9%B6%E6%8E%92-diff-%E8%83%9C%E8%BF%87%E5%B9%B3%E5%9D%87%E5%88%86" data-v-fd403cd9="">四、并排 diff 胜过平均分 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%94%E3%80%81%E6%8A%8A%E8%AF%84%E6%B5%8B%E7%BA%B3%E5%85%A5-ci-%E7%9A%84%E7%AD%96%E7%95%A5" data-v-fd403cd9="">五、把评测纳入 CI 的策略 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">LLM 评测台搭建手记：别让「我感觉好一些」当 KPI</h1><div class="meta" data-v-1982a48e=""><time datetime="2025-09-14T00:00:00.000Z" data-v-1982a48e="">2025年9月14日</time><span class="meta-item" data-v-1982a48e="">AI 与实践</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/AI" class="tag" data-v-1982a48e="">AI</a><a href="/blog/tags/%E5%89%8D%E7%AB%AF" class="tag" data-v-1982a48e="">前端</a><a href="/blog/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B" class="tag" data-v-1982a48e="">生产力</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>模型提供商偷偷更新权重、团队微调 prompt、某人顺手改了 temperature——三件互不商量的事可以在同一天发生，然后你在复盘会上听到：<strong>「我记得上周还挺聪明的」</strong>。这不是玄学，是缺少基线。</p>
+<p>这篇文章写给需要在迭代里 defend budget 的工程师：<strong>如何把评测从「玄学体感」推进到「可重复的实验室流程」</strong>——哪怕第一期简陋得像作坊。</p>
+<hr>
+<h2 id="%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%93%E6%84%9F%E4%B8%8D%E5%A4%9F%E7%94%A8" tabindex="-1">一、为什么体感不够用 <a class="header-anchor" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%93%E6%84%9F%E4%B8%8D%E5%A4%9F%E7%94%A8" aria-hidden="true">#</a></h2>
+<p>人类记忆对「变好」敏感，对「变差」迟钝——尤其是文案类输出。没有固定问题集，你无法回答：<strong>昨天的改动是否伤害了主干场景</strong>。体感在第一周有用，第三周开始变成噪声。</p>
+<hr>
+<h2 id="%E4%BA%8C%E3%80%81golden-questions%EF%BC%9A%E5%AE%81%E5%8F%AF%E5%B0%91%EF%BC%8C%E4%BD%86%E8%A6%81%E5%88%86%E5%B1%82" tabindex="-1">二、Golden questions：宁可少，但要分层 <a class="header-anchor" href="#%E4%BA%8C%E3%80%81golden-questions%EF%BC%9A%E5%AE%81%E5%8F%AF%E5%B0%91%EF%BC%8C%E4%BD%86%E8%A6%81%E5%88%86%E5%B1%82" aria-hidden="true">#</a></h2>
+<p>不需要一上来两百条。更有效的是 <strong>二十条覆盖主干 + 已知翻车点</strong>：</p>
+<ul>
+<li>主干：最常见用户任务；</li>
+<li>边界：长上下文、空输入、恶意注入；</li>
+<li>回归：历史上出过事故的 ticket。</li>
+</ul>
+<p>每条记录期望行为：<strong>允许的自由度</strong>（例如摘要长度）、<strong>禁用行为</strong>（例如编造接口）。</p>
+<hr>
+<h2 id="%E4%B8%89%E3%80%81%E8%84%9A%E6%9C%AC%E5%85%88%E4%BA%8E%E4%BB%AA%E8%A1%A8%E7%9B%98" tabindex="-1">三、脚本先于仪表盘 <a class="header-anchor" href="#%E4%B8%89%E3%80%81%E8%84%9A%E6%9C%AC%E5%85%88%E4%BA%8E%E4%BB%AA%E8%A1%A8%E7%9B%98" aria-hidden="true">#</a></h2>
+<p>我见过最务实的起点：</p>
+<ol>
+<li>一个 markdown 文件列出问题；</li>
+<li>一个 npm script 调模型 API，把原始回答落盘；</li>
+<li>git diff 对比两次运行目录。</li>
+</ol>
+<p>复杂可视化以后再加。<strong>先有基线，再谈自动化打分</strong>。一上来就上多维雷达图往往死在没人维护特征权重。</p>
+<hr>
+<h2 id="%E5%9B%9B%E3%80%81%E5%B9%B6%E6%8E%92-diff-%E8%83%9C%E8%BF%87%E5%B9%B3%E5%9D%87%E5%88%86" tabindex="-1">四、并排 diff 胜过平均分 <a class="header-anchor" href="#%E5%9B%9B%E3%80%81%E5%B9%B6%E6%8E%92-diff-%E8%83%9C%E8%BF%87%E5%B9%B3%E5%9D%87%E5%88%86" aria-hidden="true">#</a></h2>
+<p>平均分掩盖大量失败模式。<strong>并排展示两次回答</strong>能让评审会迅速对齐「哪种退步更不能接受」——有时语义准确率没变，但冗长度暴增，对 UX 同样是灾难。</p>
+<p>前端在这里的角色非常关键：<strong>把抽象分数变成可排序、可过滤、可分享的表格与 diff 视图</strong>——这比后端多写一个 REST 更能加速团队决策。</p>
+<hr>
+<h2 id="%E4%BA%94%E3%80%81%E6%8A%8A%E8%AF%84%E6%B5%8B%E7%BA%B3%E5%85%A5-ci-%E7%9A%84%E7%AD%96%E7%95%A5" tabindex="-1">五、把评测纳入 CI 的策略 <a class="header-anchor" href="#%E4%BA%94%E3%80%81%E6%8A%8A%E8%AF%84%E6%B5%8B%E7%BA%B3%E5%85%A5-ci-%E7%9A%84%E7%AD%96%E7%95%A5" aria-hidden="true">#</a></h2>
+<p>全自动打分门槛高，但可以做 lighter 的几件事：</p>
+<ul>
+<li><strong>schema 校验</strong>：输出仍是合法 JSON 吗？</li>
+<li><strong>长度与禁用词</strong>：有没有触发红线？</li>
+<li><strong>快照对比</strong>：与 baseline 的差异是否超过阈值触发人工队列？</li>
+</ul>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>评测不是为了炫技，是为了在模型 silently drift 时你还有刹车。<strong>体感可以是起点，不能是终点</strong>——除非你甘愿每次都靠值班工程师的记忆兜底。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

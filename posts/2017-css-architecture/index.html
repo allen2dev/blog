@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%AF%85%E5%92%92%EF%BC%9A%E7%89%B9%E5%BC%82%E6%80%A7%E6%88%98%E4%BA%89" data-v-fd403cd9="">全局样式的诅咒：特异性战争 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#bem%EF%BC%9A%E7%94%A8%E5%91%BD%E5%90%8D%E4%B9%B0%E5%8F%AF%E8%AF%BB%E6%80%A7" data-v-fd403cd9="">BEM：用命名买可读性 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%9A%E5%B5%8C%E5%A5%97%E6%98%AF%E8%9C%9C%E7%B3%96%E4%B9%9F%E6%98%AF%E6%AF%92%E8%8D%AF" data-v-fd403cd9="">预处理器：嵌套是蜜糖也是毒药 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#css-modules-%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%9A%E8%BE%B9%E7%95%8C%E7%BB%88%E4%BA%8E%E8%BF%9B%E4%BA%86%E6%9E%84%E5%BB%BA%E9%93%BE" data-v-fd403cd9="">CSS Modules 与作用域：边界终于进了构建链 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E5%8E%9F%E5%AD%90%E7%B1%BB-%2F-utility-first%EF%BC%9A%E5%BF%AB%E4%B8%8E%E4%B9%B1%E7%9A%84%E8%BE%A9%E8%AF%81" data-v-fd403cd9="">原子类 / Utility-first：快与乱的辩证 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E6%88%91%E8%87%B3%E4%BB%8A%E4%BB%8D%E9%81%B5%E5%AE%88%E7%9A%84%E4%B8%89%E6%9D%A1%E5%BA%95%E7%BA%BF" data-v-fd403cd9="">我至今仍遵守的三条底线 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">CSS 架构十年札记：当样式成为「看不见的技术债」</h1><div class="meta" data-v-1982a48e=""><time datetime="2017-05-30T00:00:00.000Z" data-v-1982a48e="">2017年5月30日</time><span class="meta-item" data-v-1982a48e="">前端工程</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/%E5%89%8D%E7%AB%AF" class="tag" data-v-1982a48e="">前端</a><a href="/blog/tags/CSS" class="tag" data-v-1982a48e="">CSS</a><a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96" class="tag" data-v-1982a48e="">工程化</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>很长一段时间里，前端面试喜欢问 JavaScript，却很少认真问 CSS——仿佛样式只是「锦上添花」。等到页面过了三十屏、主题换过三代、设计师离职两轮之后，团队才会在某个深夜共识：<strong>CSS 可能是仓库里最贵的隐形债务之一</strong>。</p>
+<p>这篇文章记录我亲历过的几种「救命药方」，以及它们各自适用的边界。不讲对错，只讲<strong>在什么约束下用什么东西才不后悔</strong>。</p>
+<hr>
+<h2 id="%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%AF%85%E5%92%92%EF%BC%9A%E7%89%B9%E5%BC%82%E6%80%A7%E6%88%98%E4%BA%89" tabindex="-1">全局样式的诅咒：特异性战争 <a class="header-anchor" href="#%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%AF%85%E5%92%92%EF%BC%9A%E7%89%B9%E5%BC%82%E6%80%A7%E6%88%98%E4%BA%89" aria-hidden="true">#</a></h2>
+<p>早期最常见的问题是 <code>#header .nav li a:hover</code> 这类选择器层层加码——不是为了炫技，而是为了「打赢」前面某人写下的规则。特异性一旦变成军备竞赛，重构就变成考古：你得先读懂三年前哪位同事在和谁较劲。</p>
+<p>那时候我们学到的第一课，其实不是「少用 <code>!important</code>」，而是：<strong>团队的 CSS 也需要架构</strong>。没有架构的样式层，最终会变成一团所有人都不敢动的毛线球。</p>
+<hr>
+<h2 id="bem%EF%BC%9A%E7%94%A8%E5%91%BD%E5%90%8D%E4%B9%B0%E5%8F%AF%E8%AF%BB%E6%80%A7" tabindex="-1">BEM：用命名买可读性 <a class="header-anchor" href="#bem%EF%BC%9A%E7%94%A8%E5%91%BD%E5%90%8D%E4%B9%B0%E5%8F%AF%E8%AF%BB%E6%80%A7" aria-hidden="true">#</a></h2>
+<p>BEM 的核心贡献不是「三个下划线」，而是<strong>强迫你在命名时回答「块—元素—修饰符」这三个角色</strong>。冗长吗？冗长。但在没有构建工具魔法的日子里，它至少让 <code>grep</code> 与 Code Review 仍然可行。</p>
+<p>实践中的坑在于：<strong>团队是否共享同一套边界定义</strong>。有人把「块」理解成页面模块，有人理解成组件——定义不一致时，BEM 只会把分歧编码得更长。</p>
+<p>我会建议在引入 BEM 的同时写一页极短的约定：<strong>哪些属于 Block、何时新开 Block、修饰符能否跨组合</strong>。字数不多，但能避免半年后全员重构一轮类名。</p>
+<hr>
+<h2 id="%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%9A%E5%B5%8C%E5%A5%97%E6%98%AF%E8%9C%9C%E7%B3%96%E4%B9%9F%E6%98%AF%E6%AF%92%E8%8D%AF" tabindex="-1">预处理器：嵌套是蜜糖也是毒药 <a class="header-anchor" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%9A%E5%B5%8C%E5%A5%97%E6%98%AF%E8%9C%9C%E7%B3%96%E4%B9%9F%E6%98%AF%E6%AF%92%E8%8D%AF" aria-hidden="true">#</a></h2>
+<p>Less/Sass 带来了变量、嵌套、mixin。变量解决「颜色散落八十处」是真的；嵌套解决「写起来爽」也是真的——但若缺少纪律，嵌套会把特异性问题<strong>藏得更深</strong>：你在第五层嵌套里改了一个颜色，三个月后发现某个兄弟选择器仍然覆盖了你，因为编译后的选择器比你想象的更长。</p>
+<p>我的做法一贯粗暴：<strong>嵌套不超过三层；再往下必须新开块或拆 class</strong>。这不是语法限制，而是给未来维护者留一口气。</p>
+<hr>
+<h2 id="css-modules-%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%9A%E8%BE%B9%E7%95%8C%E7%BB%88%E4%BA%8E%E8%BF%9B%E4%BA%86%E6%9E%84%E5%BB%BA%E9%93%BE" tabindex="-1">CSS Modules 与作用域：边界终于进了构建链 <a class="header-anchor" href="#css-modules-%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%9A%E8%BE%B9%E7%95%8C%E7%BB%88%E4%BA%8E%E8%BF%9B%E4%BA%86%E6%9E%84%E5%BB%BA%E9%93%BE" aria-hidden="true">#</a></h2>
+<p>当构建工具能在编译期生成唯一类名，「样式默认局部化」才真正成立。从此评审的关注点可以从「会不会误伤全局」转向「这块组件是否暴露了合理接口」。</p>
+<p>代价是：<strong>动态类名组合</strong>需要约定（例如 <code>styles.active</code> 与模板字符串），以及**主题与令牌（design token）**必须提前设计。否则你会看到一堆 <code>styles.xxx</code> 与零散的 token 函数混用——边界清晰了，心智模型却分裂了。</p>
+<hr>
+<h2 id="%E5%8E%9F%E5%AD%90%E7%B1%BB-%2F-utility-first%EF%BC%9A%E5%BF%AB%E4%B8%8E%E4%B9%B1%E7%9A%84%E8%BE%A9%E8%AF%81" tabindex="-1">原子类 / Utility-first：快与乱的辩证 <a class="header-anchor" href="#%E5%8E%9F%E5%AD%90%E7%B1%BB-%2F-utility-first%EF%BC%9A%E5%BF%AB%E4%B8%8E%E4%B9%B1%E7%9A%84%E8%BE%A9%E8%AF%81" aria-hidden="true">#</a></h2>
+<p>原子类框架解决的是「重复写小型样式规则」和「设计代币强制一致」。在迭代极快、页面高度同质的产品里，它常常显著缩短从设计到实现的距离。</p>
+<p>但它不是免费午餐：<strong>设计体系不成熟时</strong>，原子类只是把「随意拼颜色」变成了「随意拼 class」；<strong>可读性</strong>也会下降——长串 class 对新人并不友好。团队若选这条路，必须配套：</p>
+<ol>
+<li>一套稳定的 spacing / color / typography token；</li>
+<li>组件库承载复杂交互，页面层尽量组合而非发明；</li>
+<li>Code Review 里有人专职盯「是否发明一次性抽象」。</li>
+</ol>
+<hr>
+<h2 id="%E6%88%91%E8%87%B3%E4%BB%8A%E4%BB%8D%E9%81%B5%E5%AE%88%E7%9A%84%E4%B8%89%E6%9D%A1%E5%BA%95%E7%BA%BF" tabindex="-1">我至今仍遵守的三条底线 <a class="header-anchor" href="#%E6%88%91%E8%87%B3%E4%BB%8A%E4%BB%8D%E9%81%B5%E5%AE%88%E7%9A%84%E4%B8%89%E6%9D%A1%E5%BA%95%E7%BA%BF" aria-hidden="true">#</a></h2>
+<p>第一，<strong>全局入口必须清单化</strong>：reset、字体、基础变量可以全局；其余默认组件私有。<br>
+第二，<strong>魔法数字进变量</strong>：间距与色值若散落，设计一改你就输了。<br>
+第三，<strong>跨团队变更走 RFC</strong>：主题升级不是「替换变量文件」一句话，而是接口变更——要有迁移窗口与回归清单。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>CSS 从来不是「会不会写选择器」那么简单。它是<strong>协作协议的可视化层</strong>：谁在什么粒度上拥有样式主权，如何在迭代中不踩别人地里——这些问题若不事前说好，后期只能靠加班与补丁维系。</p>
+<p>十年过去，我依然相信：<strong>约束清晰比工具新潮重要</strong>。工具会变，约束思维不会。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

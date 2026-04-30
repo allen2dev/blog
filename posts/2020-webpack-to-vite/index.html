@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9Awebpack-%E5%88%B0%E5%BA%95%E8%B5%A2%E5%9C%A8%E4%BB%80%E4%B9%88" data-v-fd403cd9="">第一章：Webpack 到底赢在什么 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%97%9B%E7%82%B9%E4%BB%8E%E4%BD%95%E8%80%8C%E8%B5%B7" data-v-fd403cd9="">第二章：痛点从何而起 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E8%BF%81%E7%A7%BB%E7%AD%96%E7%95%A5%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E9%94%99%E4%BA%86%E4%BC%9A%E7%BF%BB%E8%BD%A6" data-v-fd403cd9="">第三章：迁移策略——顺序错了会翻车 #</a></li><li class="outline-item outline-level-3" data-v-fd403cd9=""><a href="#1.-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90" data-v-fd403cd9="">1. 环境与静态资源 #</a></li><li class="outline-item outline-level-3" data-v-fd403cd9=""><a href="#2.-%E6%A0%B7%E5%BC%8F%E4%B8%8E-css-%E6%96%B9%E6%A1%88" data-v-fd403cd9="">2. 样式与 CSS 方案 #</a></li><li class="outline-item outline-level-3" data-v-fd403cd9=""><a href="#3.-%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2" data-v-fd403cd9="">3. 入口与代码分割 #</a></li><li class="outline-item outline-level-3" data-v-fd403cd9=""><a href="#4.-node-polyfill-%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8-api" data-v-fd403cd9="">4. Node polyfill 与浏览器 API #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8D%A2%E4%BB%A3%E7%9A%84%E6%A0%87%E5%87%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" data-v-fd403cd9="">第四章：换代的标准是什么？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%B7%A5%E5%85%B7%E6%8D%A2%E4%BB%A3%E8%83%8C%E5%90%8E%E7%9A%84%E7%BB%84%E7%BB%87%E9%97%AE%E9%A2%98" data-v-fd403cd9="">第五章：工具换代背后的组织问题 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">Webpack 之后：我为什么仍感激它，又愿意拥抱 Vite</h1><div class="meta" data-v-1982a48e=""><time datetime="2020-07-14T00:00:00.000Z" data-v-1982a48e="">2020年7月14日</time><span class="meta-item" data-v-1982a48e="">前端工程</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/Vite" class="tag" data-v-1982a48e="">Vite</a><a href="/blog/tags/Webpack" class="tag" data-v-1982a48e="">Webpack</a><a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96" class="tag" data-v-1982a48e="">工程化</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>Webpack 在我职业生涯里占据的时间远比我想承认的长。它教会我「一切皆模块」与插件哲学——这套心智迁移到任何打包器都有用。但当仓库膨胀、入口增多、本地冷启动逼近一分钟时，我开始诚实面对一个问题：<strong>开发体验算不算生产力？</strong></p>
+<p>这篇文章记录一次典型的工具换代决策：<strong>不是追逐网红配置，而是量化痛点、列出迁移清单、设定回滚条件</strong>。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9Awebpack-%E5%88%B0%E5%BA%95%E8%B5%A2%E5%9C%A8%E4%BB%80%E4%B9%88" tabindex="-1">第一章：Webpack 到底赢在什么 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9Awebpack-%E5%88%B0%E5%BA%95%E8%B5%A2%E5%9C%A8%E4%BB%80%E4%B9%88" aria-hidden="true">#</a></h2>
+<p>在浏览器原生 ESM 尚未普及的年代，webpack 承担了三件事：</p>
+<ol>
+<li><strong>把任意资源纳入模块图</strong>：图片、字体、样式，皆可 <code>import</code>。</li>
+<li><strong>代码拆分与按需加载</strong>：路由级 chunk、vendor split，都有成熟范式。</li>
+<li><strong>插件生态</strong>：从 babel 到 TS，从 CSS 到 Vue SFC，几乎总能找到「loader + plugin」组合拳。</li>
+</ol>
+<p>这些能力让它在企业级项目里站稳脚跟。<strong>说它「重」的人抱怨的往往是配置复杂度</strong>，而不是「不该存在」——复杂度很多时候反映的是真实世界的多样性。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%97%9B%E7%82%B9%E4%BB%8E%E4%BD%95%E8%80%8C%E8%B5%B7" tabindex="-1">第二章：痛点从何而起 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E7%97%9B%E7%82%B9%E4%BB%8E%E4%BD%95%E8%80%8C%E8%B5%B7" aria-hidden="true">#</a></h2>
+<p>当痛点不再是「能不能打包」，而是「改一行要等多久反馈」，争论焦点就变了：</p>
+<ul>
+<li><strong>冷启动</strong>：模块图越大，初始化越久。</li>
+<li><strong>HMR</strong>：改动传递到浏览器的路径越长，心智越容易断裂。</li>
+<li><strong>缓存</strong>：增量编译一旦不稳，开发者会养成「动不动就重启 dev server」的恶习。</li>
+</ul>
+<p>这时候替代方案的价值主张通常是：<strong>开发路径走原生 ESM + 按需编译，生产路径仍交给成熟打包器（如 Rollup）</strong>。Vite 走的就是这条路——我不是在给某个商标背书，而是在描述一类架构。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E8%BF%81%E7%A7%BB%E7%AD%96%E7%95%A5%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E9%94%99%E4%BA%86%E4%BC%9A%E7%BF%BB%E8%BD%A6" tabindex="-1">第三章：迁移策略——顺序错了会翻车 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E8%BF%81%E7%A7%BB%E7%AD%96%E7%95%A5%E2%80%94%E2%80%94%E9%A1%BA%E5%BA%8F%E9%94%99%E4%BA%86%E4%BC%9A%E7%BF%BB%E8%BD%A6" aria-hidden="true">#</a></h2>
+<p>经验里的安全顺序是：</p>
+<h3 id="1.-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90" tabindex="-1">1. 环境与静态资源 <a class="header-anchor" href="#1.-%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90" aria-hidden="true">#</a></h3>
+<p>对齐 <code>import.meta.env</code>、<code>process.env</code> shim、<code>public</code> 目录行为，尤其是部署到 <strong>子路径</strong>（GitHub Pages）时的 <code>base</code>。我见过不止一例迁移卡在「线上资源 404」——那不是框架 bug，是路径假设变了。</p>
+<h3 id="2.-%E6%A0%B7%E5%BC%8F%E4%B8%8E-css-%E6%96%B9%E6%A1%88" tabindex="-1">2. 样式与 CSS 方案 <a class="header-anchor" href="#2.-%E6%A0%B7%E5%BC%8F%E4%B8%8E-css-%E6%96%B9%E6%A1%88" aria-hidden="true">#</a></h3>
+<p>Less/Sass、CSS Modules、PostCSS——逐项对照迁移前后输出是否一致。样式是最容易被低估的土雷。</p>
+<h3 id="3.-%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2" tabindex="-1">3. 入口与代码分割 <a class="header-anchor" href="#3.-%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2" aria-hidden="true">#</a></h3>
+<p>动态 <code>import()</code>、魔法注释、legacy bundle——对照产物体积与运行时请求瀑布。</p>
+<h3 id="4.-node-polyfill-%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8-api" tabindex="-1">4. Node polyfill 与浏览器 API <a class="header-anchor" href="#4.-node-polyfill-%E4%B8%8E%E6%B5%8F%E8%A7%88%E5%99%A8-api" aria-hidden="true">#</a></h3>
+<p>旧代码若隐含 Node API，在新工具里可能直接报错——这正是「迁移清单」存在的意义。</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run dev
+<span class="token function">npm</span> run build
+</code></pre>
+<p>这两条命令应当成为迁移验收的最低门槛；在此之上再加 Lighthouse、e2e。</p>
+<hr>
+<h2 id="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8D%A2%E4%BB%A3%E7%9A%84%E6%A0%87%E5%87%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" tabindex="-1">第四章：换代的标准是什么？ <a class="header-anchor" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8D%A2%E4%BB%A3%E7%9A%84%E6%A0%87%E5%87%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>我会用三个量化维度说服自己：</p>
+<ol>
+<li><strong>本地反馈时间</strong>：从保存文件到浏览器更新的 P95。</li>
+<li><strong>CI 构建时间</strong>：是否下降或至少不明显变差。</li>
+<li><strong>维护成本</strong>：配置文件行数、插件数量、新人上手文档厚度。</li>
+</ol>
+<p>若只有第一项改善而后两项恶化，就要警惕：<strong>是否在把复杂度转嫁给 CI 与 onboarding</strong>。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%B7%A5%E5%85%B7%E6%8D%A2%E4%BB%A3%E8%83%8C%E5%90%8E%E7%9A%84%E7%BB%84%E7%BB%87%E9%97%AE%E9%A2%98" tabindex="-1">第五章：工具换代背后的组织问题 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%B7%A5%E5%85%B7%E6%8D%A2%E4%BB%A3%E8%83%8C%E5%90%8E%E7%9A%84%E7%BB%84%E7%BB%87%E9%97%AE%E9%A2%98" aria-hidden="true">#</a></h2>
+<p>任何构建工具都与 CI、Docker、预览环境耦合。换代从来不只是改 <code>package.json</code>，而是：</p>
+<ul>
+<li>缓存目录是否纳入 <code>.gitignore</code> / CI cache；</li>
+<li>Source map 上传策略是否变化；</li>
+<li>线上错误监控里的文件名映射是否仍然成立。</li>
+</ul>
+<p>忽视这些，就会出现「我本地飞快、同事全红」的经典悲剧。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>Webpack 与 Vite 之争，本质是<strong>开发路径与生产路径是否要用同一套权衡</strong>。无论选哪边，我都会坚持：<strong>构建管线服务于交付节奏，而不是反过来</strong>。工具会变，但「量化痛点—列出清单—保留回滚」这套决策骨架不会过时。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

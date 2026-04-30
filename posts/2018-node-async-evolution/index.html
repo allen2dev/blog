@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%9B%9E%E8%B0%83%E6%97%B6%E4%BB%A3%E7%9A%84%E7%9C%9F%E5%AE%9E%E7%97%9B%E7%82%B9" data-v-fd403cd9="">第一章：回调时代的真实痛点 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9Apromise-%E5%88%B0%E5%BA%95%E7%BB%9F%E4%B8%80%E4%BA%86%E4%BB%80%E4%B9%88" data-v-fd403cd9="">第二章：Promise 到底统一了什么 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9Aasync%2Fawait%E2%80%94%E2%80%94%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E8%B4%A3%E4%BB%BB%E4%B9%9F%E5%9C%A8" data-v-fd403cd9="">第三章：async/await——控制流回来了，责任也在 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9Aio-%E5%AF%86%E9%9B%86-vs-cpu-%E5%AF%86%E9%9B%86%E2%80%94%E2%80%94async-%E6%95%91%E4%B8%8D%E4%BA%86%E5%90%8E%E8%80%85" data-v-fd403cd9="">第四章：IO 密集 vs CPU 密集——async 救不了后者 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E8%83%8C%E5%8E%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E2%80%94%E2%80%94%E5%B9%B6%E5%8F%91%E4%B8%8A%E9%99%90%E8%B0%81%E6%9D%A5%E5%AE%88" data-v-fd403cd9="">第五章：背压与资源——并发上限谁来守 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">Node 异步二十年简史：从回调地狱到可观测的 async</h1><div class="meta" data-v-1982a48e=""><time datetime="2018-04-08T00:00:00.000Z" data-v-1982a48e="">2018年4月8日</time><span class="meta-item" data-v-1982a48e="">Node</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/Node.js" class="tag" data-v-1982a48e="">Node.js</a><a href="/blog/tags/%E5%BC%82%E6%AD%A5" class="tag" data-v-1982a48e="">异步</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>Node 的卖点从来都不是「JavaScript 很酷」，而是<strong>用事件循环把 IO 密集活干好</strong>：用少量线程服务大量连接。可一旦你在业务里写了足够多的异步逻辑，就会发现：<strong>Most bugs are timing bugs</strong>——有时表现为 race condition，有时表现为「我以为早已完成的写入其实还没 flush」，有时表现为「cancel 了请求却没收尾」。</p>
+<p>这篇文章把我对异步演进的理解摊开来：<strong>不止是语法糖更替，而是错误模型与资源模型是否在变好</strong>。读完你可能会同意：<code>async/await</code> 解决了一半问题；另一半要靠纪律与工具。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%9B%9E%E8%B0%83%E6%97%B6%E4%BB%A3%E7%9A%84%E7%9C%9F%E5%AE%9E%E7%97%9B%E7%82%B9" tabindex="-1">第一章：回调时代的真实痛点 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%9B%9E%E8%B0%83%E6%97%B6%E4%BB%A3%E7%9A%84%E7%9C%9F%E5%AE%9E%E7%97%9B%E7%82%B9" aria-hidden="true">#</a></h2>
+<p><code>callback(err, result)</code> 看似简单，痛点却在两处：</p>
+<p><strong>其一是错误传播</strong>。漏写一个 <code>if (err)</code>，错误就地蒸发；多层嵌套里更容易忘记在某个分支 return。<strong>其二是控制流组合</strong>。串行、并行、超时、重试——手写嵌套很快不可读。<code>async</code> 库、Bluebird 等库曾经救场，本质是在补「语言级组合子」的缺位。</p>
+<p>很多人用「回调地狱」形容缩进，我倒觉得<strong>更致命的是隐式状态</strong>：你不得不在闭包里记「已经收到第几个结果」「是否已调用过 callback」——这些状态一多，就离「可证明正确」越来越远。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9Apromise-%E5%88%B0%E5%BA%95%E7%BB%9F%E4%B8%80%E4%BA%86%E4%BB%80%E4%B9%88" tabindex="-1">第二章：Promise 到底统一了什么 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9Apromise-%E5%88%B0%E5%BA%95%E7%BB%9F%E4%B8%80%E4%BA%86%E4%BB%80%E4%B9%88" aria-hidden="true">#</a></h2>
+<p>Promise 首先统一了<strong>表示未来值</strong>的数据结构：有且仅有三种终态。其次，它让 <code>throw</code> 在链式调用里有了可传播路径——这直接改变了错误处理的心智。</p>
+<p>但 Promise 也引入新的坑：</p>
+<ul>
+<li><strong>忘记 return Promise</strong>，父级 <code>then</code> 以为子任务完成，实际还在飞。</li>
+<li><strong>吞错</strong>：<code>catch</code> 里处理完若仍想向上抛，需要显式 rethrow 或 return rejected Promise。</li>
+<li><strong>并发误用</strong>：<code>Promise.all</code> 在「一错全错」与 <code>Promise.allSettled</code> 在「全收集」之间，业务常常选错。</li>
+</ul>
+<p>这一阶段教会我：<strong>组合异步不等于理解异步</strong>。语法层面的 <code>.then</code> 链再漂亮，也挡不住错误模型没想清楚的业务。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9Aasync%2Fawait%E2%80%94%E2%80%94%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E8%B4%A3%E4%BB%BB%E4%B9%9F%E5%9C%A8" tabindex="-1">第三章：async/await——控制流回来了，责任也在 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9Aasync%2Fawait%E2%80%94%E2%80%94%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E8%B4%A3%E4%BB%BB%E4%B9%9F%E5%9C%A8" aria-hidden="true">#</a></h2>
+<p><code>async/await</code> 的价值在于：把异步代码变回大多数人熟悉的<strong>块状控制流</strong>，<code>try/catch</code> 终于能包住一整段逻辑。对维护 CLI、BFF、批处理脚本的人来说，这是实实在在的认知减负。</p>
+<p>但请牢记：<strong>async 函数本身总是返回 Promise</strong>。这意味着：</p>
+<ol>
+<li><strong>顶层 await</strong>（在支持的运行时）与<strong>普通函数里忘记 await</strong> 是两类经典 bug 来源。</li>
+<li><strong>并发仍然要你亲自选策略</strong>：<code>Promise.all</code>、<code>map</code> 里 <code>async</code>、还是队列——await 不会替你决定。</li>
+<li>**取消（cancellation）**依然不是语言内置语义——AbortController、自定义 token、或干脆接受「发起方走了但回调仍会落地」的风险。</li>
+</ol>
+<p>下面这段批量请求在演示「并发」的同时，也演示了<strong>失败策略</strong>必须显式选择：</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">batchFetch</span><span class="token punctuation">(</span>urls<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> results <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token builtin">Promise</span><span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>
+    urls<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>res<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>url<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>res<span class="token punctuation">.</span>status<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span>
+  <span class="token keyword">return</span> results
+<span class="token punctuation">}</span>
+</code></pre>
+<p>若业务要求「部分失败可接受」，你就必须改写为 <code>allSettled</code> 或逐条 try/catch，并在返回结构里区分成功与失败——这不再是语法问题，而是<strong>产品语义</strong>问题。</p>
+<hr>
+<h2 id="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9Aio-%E5%AF%86%E9%9B%86-vs-cpu-%E5%AF%86%E9%9B%86%E2%80%94%E2%80%94async-%E6%95%91%E4%B8%8D%E4%BA%86%E5%90%8E%E8%80%85" tabindex="-1">第四章：IO 密集 vs CPU 密集——async 救不了后者 <a class="header-anchor" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9Aio-%E5%AF%86%E9%9B%86-vs-cpu-%E5%AF%86%E9%9B%86%E2%80%94%E2%80%94async-%E6%95%91%E4%B8%8D%E4%BA%86%E5%90%8E%E8%80%85" aria-hidden="true">#</a></h2>
+<p>Node 的主线程模型决定了：<strong>长 CPU 任务会阻塞事件循环</strong>。你再优雅的 <code>await</code>，也挡不住同步 JSON 解析巨型对象或巨型正则回溯带来的卡顿。对策通常是：</p>
+<ul>
+<li><strong>拆分任务</strong>：<code>setImmediate</code> / <code>queueMicrotask</code>（谨慎）分批处理；</li>
+<li><strong>worker_threads</strong> 或子进程跑 CPU 密集；</li>
+<li><strong>队列系统</strong>把重活挪到专用 worker pool。</li>
+</ul>
+<p>.async 并没有改变这一条物理定律。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E8%83%8C%E5%8E%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E2%80%94%E2%80%94%E5%B9%B6%E5%8F%91%E4%B8%8A%E9%99%90%E8%B0%81%E6%9D%A5%E5%AE%88" tabindex="-1">第五章：背压与资源——并发上限谁来守 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E8%83%8C%E5%8E%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E2%80%94%E2%80%94%E5%B9%B6%E5%8F%91%E4%B8%8A%E9%99%90%E8%B0%81%E6%9D%A5%E5%AE%88" aria-hidden="true">#</a></h2>
+<p>并发不等于无限并行。一千个 HTTP 请求同时 <code>fetch</code>，可能打爆本地 ephemeral port，也可能压垮下游。你需要：</p>
+<ul>
+<li><strong>连接池与 keep-alive</strong>（若走底层客户端）；</li>
+<li><strong>限制并发数</strong>（p-limit 一类工具）；</li>
+<li><strong>超时与重试策略</strong>（带 jitter，避免惊群）。</li>
+</ul>
+<p>这些东西不会出现在「async 入门」教程里，却决定了线上是否会在促销夜报警。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>从回调到 Promise 再到 async/await，表面是语法演进，底层是<strong>错误模型与组合能力</strong>在变完整。写 Node 的第十年，我不再追求「看起来像同步代码」，而追求三件事：<strong>错误能否追到源头、资源能否在 finally 里收口、并发是否有上限</strong>。</p>
+<p>剩下那一半，交给代码评审与监控——它们和异步范式一样老，也一样可靠。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

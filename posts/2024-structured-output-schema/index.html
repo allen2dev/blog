@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%87%AA%E7%94%B1%E6%96%87%E6%9C%AC%E5%9C%A8%E9%9B%86%E6%88%90%E9%87%8C%E6%98%AF%E8%B4%9F%E5%80%BA" data-v-fd403cd9="">一、为什么自由文本在集成里是负债 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%8C%E3%80%81schema-%E4%BD%9C%E4%B8%BA%E8%B7%A8%E8%81%8C%E8%83%BD%E5%A5%91%E7%BA%A6" data-v-fd403cd9="">二、Schema 作为跨职能契约 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%B8%89%E3%80%81%E5%A4%B1%E8%B4%A5%E8%B7%AF%E5%BE%84%E8%A6%81%E5%92%8C%E6%88%90%E5%8A%9F%E8%B7%AF%E5%BE%84%E5%90%8C%E7%AD%89%E8%AE%BE%E8%AE%A1" data-v-fd403cd9="">三、失败路径要和成功路径同等设计 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E5%9B%9B%E3%80%81%E5%89%8D%E7%AB%AF%E8%B4%A3%E4%BB%BB%EF%BC%9A%E6%8A%8A%E6%A0%A1%E9%AA%8C%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E6%88%90%E5%8F%AF%E7%94%A8-ux" data-v-fd403cd9="">四、前端责任：把校验结果映射成可用 UX #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E4%BA%94%E3%80%81%E4%B8%8E%E3%80%8C%E6%A8%A1%E5%9E%8B%E8%B4%9F%E8%B4%A3%E5%88%9B%E6%84%8F%EF%BC%8C%E7%B3%BB%E7%BB%9F%E8%B4%9F%E8%B4%A3%E8%A3%81%E5%86%B3%E3%80%8D%E5%AF%B9%E9%BD%90" data-v-fd403cd9="">五、与「模型负责创意，系统负责裁决」对齐 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD" data-v-fd403cd9="">结语 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">结构化输出与 JSON Schema：别让我们的接口「写作文」</h1><div class="meta" data-v-1982a48e=""><time datetime="2024-11-07T00:00:00.000Z" data-v-1982a48e="">2024年11月7日</time><span class="meta-item" data-v-1982a48e="">AI 与实践</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/AI" class="tag" data-v-1982a48e="">AI</a><a href="/blog/tags/LLM" class="tag" data-v-1982a48e="">LLM</a><a href="/blog/tags/TypeScript" class="tag" data-v-1982a48e="">TypeScript</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>演示里最精彩的往往是模型口若悬河；上线后最先爆炸的往往是：<strong>下游解析不了、前端渲染不了、审计对不上</strong>。自由文本适合讲故事，不适合作为系统边界——除非你甘愿为每一类下游手写正则解析器。</p>
+<p>这篇文章讨论一种更工程化的形态：<strong>让模型输出结构化 JSON</strong>，用 Schema 描述字段含义与约束，并在前后端共享同一套校验逻辑。</p>
+<hr>
+<h2 id="%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%87%AA%E7%94%B1%E6%96%87%E6%9C%AC%E5%9C%A8%E9%9B%86%E6%88%90%E9%87%8C%E6%98%AF%E8%B4%9F%E5%80%BA" tabindex="-1">一、为什么自由文本在集成里是负债 <a class="header-anchor" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%87%AA%E7%94%B1%E6%96%87%E6%9C%AC%E5%9C%A8%E9%9B%86%E6%88%90%E9%87%8C%E6%98%AF%E8%B4%9F%E5%80%BA" aria-hidden="true">#</a></h2>
+<p>当你需要：</p>
+<ul>
+<li>表格列字段绑定；</li>
+<li>数据库 NOT NULL 约束；</li>
+<li>权限系统按字段级别审计；</li>
+</ul>
+<p>你就必须面对一个事实：<strong>字符串不是数据结构</strong>。团队若在 demo 阶段忽略了这一点，后期「补结构化」的成本常常高于重写集成层。</p>
+<hr>
+<h2 id="%E4%BA%8C%E3%80%81schema-%E4%BD%9C%E4%B8%BA%E8%B7%A8%E8%81%8C%E8%83%BD%E5%A5%91%E7%BA%A6" tabindex="-1">二、Schema 作为跨职能契约 <a class="header-anchor" href="#%E4%BA%8C%E3%80%81schema-%E4%BD%9C%E4%B8%BA%E8%B7%A8%E8%81%8C%E8%83%BD%E5%A5%91%E7%BA%A6" aria-hidden="true">#</a></h2>
+<p>JSON Schema（或 zod、protobuf、OpenAPI 组件 schema——选型视栈而定）的价值在于：<strong>人类与机器都能读</strong>。前端可以把 schema 编译成 TS 类型；后端可以用同一描述做运行时校验；模型侧则可以把 schema 附在 prompt 里作为输出约束。</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> ArticleDraftSchema <span class="token operator">=</span> <span class="token punctuation">{</span>
+  type<span class="token operator">:</span> <span class="token string">'object'</span><span class="token punctuation">,</span>
+  properties<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'string'</span><span class="token punctuation">,</span> maxLength<span class="token operator">:</span> <span class="token number">120</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    summary<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'string'</span><span class="token punctuation">,</span> maxLength<span class="token operator">:</span> <span class="token number">400</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    tags<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'array'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'string'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> maxItems<span class="token operator">:</span> <span class="token number">8</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  required<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">,</span> <span class="token string">'summary'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">as</span> <span class="token keyword">const</span>
+</code></pre>
+<p>这类约束看似啰嗦，却在评审会上消灭大量「字段叫什么」的争论。</p>
+<hr>
+<h2 id="%E4%B8%89%E3%80%81%E5%A4%B1%E8%B4%A5%E8%B7%AF%E5%BE%84%E8%A6%81%E5%92%8C%E6%88%90%E5%8A%9F%E8%B7%AF%E5%BE%84%E5%90%8C%E7%AD%89%E8%AE%BE%E8%AE%A1" tabindex="-1">三、失败路径要和成功路径同等设计 <a class="header-anchor" href="#%E4%B8%89%E3%80%81%E5%A4%B1%E8%B4%A5%E8%B7%AF%E5%BE%84%E8%A6%81%E5%92%8C%E6%88%90%E5%8A%9F%E8%B7%AF%E5%BE%84%E5%90%8C%E7%AD%89%E8%AE%BE%E8%AE%A1" aria-hidden="true">#</a></h2>
+<p>真实系统里，解析失败的比例往往足以单列监控指标。你需要预先回答：</p>
+<ol>
+<li><strong>重试策略</strong>：模型偶发输出夹杂 markdown code fence，是否 strip 再 parse？</li>
+<li><strong>降级</strong>：解析失败时是否 fallback 到人工编辑模式？</li>
+<li><strong>遥测</strong>：记录失败样本（脱敏）以供 prompt 迭代。</li>
+</ol>
+<p>忽视失败路径的团队，会在第一周由用户帮忙「免费 fuzz」。</p>
+<hr>
+<h2 id="%E5%9B%9B%E3%80%81%E5%89%8D%E7%AB%AF%E8%B4%A3%E4%BB%BB%EF%BC%9A%E6%8A%8A%E6%A0%A1%E9%AA%8C%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E6%88%90%E5%8F%AF%E7%94%A8-ux" tabindex="-1">四、前端责任：把校验结果映射成可用 UX <a class="header-anchor" href="#%E5%9B%9B%E3%80%81%E5%89%8D%E7%AB%AF%E8%B4%A3%E4%BB%BB%EF%BC%9A%E6%8A%8A%E6%A0%A1%E9%AA%8C%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E6%88%90%E5%8F%AF%E7%94%A8-ux" aria-hidden="true">#</a></h2>
+<p>结构化输出的好处之一，是错误可以落到字段级——这正是前端所长：哪个输入框标红、附什么文案、是否提供「一键修复建议」。这比整页展示「模型胡说八道了」要体面得多。</p>
+<hr>
+<h2 id="%E4%BA%94%E3%80%81%E4%B8%8E%E3%80%8C%E6%A8%A1%E5%9E%8B%E8%B4%9F%E8%B4%A3%E5%88%9B%E6%84%8F%EF%BC%8C%E7%B3%BB%E7%BB%9F%E8%B4%9F%E8%B4%A3%E8%A3%81%E5%86%B3%E3%80%8D%E5%AF%B9%E9%BD%90" tabindex="-1">五、与「模型负责创意，系统负责裁决」对齐 <a class="header-anchor" href="#%E4%BA%94%E3%80%81%E4%B8%8E%E3%80%8C%E6%A8%A1%E5%9E%8B%E8%B4%9F%E8%B4%A3%E5%88%9B%E6%84%8F%EF%BC%8C%E7%B3%BB%E7%BB%9F%E8%B4%9F%E8%B4%A3%E8%A3%81%E5%86%B3%E3%80%8D%E5%AF%B9%E9%BD%90" aria-hidden="true">#</a></h2>
+<p>归根结底：<strong>模型擅长生成候选，校验器与业务规则负责裁决</strong>。Schema 是裁决席的外延——它把一部分裁决自动化了。</p>
+<p>这和十年前做好表单校验没有本质不同，只是候选来源从键盘换成了模型。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD" tabindex="-1">结语 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD" aria-hidden="true">#</a></h2>
+<p>若你的 AI 功能仍停留在「返回一大段字符串让前端自己猜」，暂停一下，花半天画 schema——你会感谢未来某个半夜不用起床修解析 bug 的自己。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

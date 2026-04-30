@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%9B%A2%E9%98%9F%E7%9A%84-muscle-memory-%E5%9C%A8%E5%93%AA%EF%BC%9F" data-v-fd403cd9="">问题一：团队的 muscle memory 在哪？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E7%BB%84%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%EF%BC%9F" data-v-fd403cd9="">问题二：组件边界如何定义？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%89%AF%E4%BD%9C%E7%94%A8%E4%BD%8F%E5%9C%A8%E5%93%AA%EF%BC%9F" data-v-fd403cd9="">问题三：副作用住在哪？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E5%9B%9B%EF%BC%9A%E7%94%9F%E6%80%81%E5%80%BA%EF%BC%9A%E8%B0%81%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%9B%86%E6%88%90%E6%88%90%E6%9C%AC%EF%BC%9F" data-v-fd403cd9="">问题四：生态债：谁是真正的集成成本？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E4%BA%94%EF%BC%9A%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5%E6%98%AF%E5%90%A6%E5%90%8C%E8%B4%A8%EF%BC%9F" data-v-fd403cd9="">问题五：测试策略是否同质？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E9%97%AE%E9%A2%98%E5%85%AD%EF%BC%9A%E6%9B%BF%E6%8D%A2%E6%A0%88%E7%9A%84%E7%9C%9F%E5%AE%9E%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" data-v-fd403cd9="">问题六：替换栈的真实触发条件是什么？ #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E8%8C%83%E5%BC%8F%E4%B9%8B%E4%BA%89%E4%B9%8B%E5%A4%96%E7%9A%84%E5%85%B1%E8%AF%86" data-v-fd403cd9="">结语：范式之争之外的共识 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">Vue 与 React：范式之争背后的六个实际问题</h1><div class="meta" data-v-1982a48e=""><time datetime="2021-03-02T00:00:00.000Z" data-v-1982a48e="">2021年3月2日</time><span class="meta-item" data-v-1982a48e="">前端架构</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/Vue" class="tag" data-v-1982a48e="">Vue</a><a href="/blog/tags/React" class="tag" data-v-1982a48e="">React</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>互联网上每隔几个月就会复活一次「Vue vs React」大战：语法糖、Hooks、双向绑定、性能基准……热闹过后，落地项目的工程师往往在半夜面对的是另一类问题：<strong>谁在偷偷改共享状态？为什么这个 effect 又跑了三次？我们为什么要为一个表单引入三套抽象？</strong></p>
+<p>这篇文章不写胜负盘，只写我在两类栈里都踩过后总结的<strong>六个实际问题</strong>。它们与模板还是 JSX 无关，却决定你能不能按期交付。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%9B%A2%E9%98%9F%E7%9A%84-muscle-memory-%E5%9C%A8%E5%93%AA%EF%BC%9F" tabindex="-1">问题一：团队的 muscle memory 在哪？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%9B%A2%E9%98%9F%E7%9A%84-muscle-memory-%E5%9C%A8%E5%93%AA%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>培训一个新同学的成本常被低估。若团队多数人闭着眼睛能写 React Hooks，突然转向 Vue 组合式 API——短期一定有产出损耗；反之亦然。</p>
+<p>我的实用结论：<strong>团队已有强项优先于个人偏好</strong>。重写技术栈的真实成本往往在六个月后才显现（插件生态、招聘、历史包袱）。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E7%BB%84%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%EF%BC%9F" tabindex="-1">问题二：组件边界如何定义？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E7%BB%84%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>Vue SFC 天然鼓励「单文件内聚合视图与逻辑」，对产品线迭代友好；React 函数组件 + Hooks 则倾向于「一切皆函数组合」。两边都能写好，也都写烂——关键在：<strong>你是否强制组件只做一件事</strong>，并在评审里拒绝「巨型组件」。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%89%AF%E4%BD%9C%E7%94%A8%E4%BD%8F%E5%9C%A8%E5%93%AA%EF%BC%9F" tabindex="-1">问题三：副作用住在哪？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%89%AF%E4%BD%9C%E7%94%A8%E4%BD%8F%E5%9C%A8%E5%93%AA%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>React Hooks 把副作用写进 <code>useEffect</code>，优点是集中可见；缺点是依赖数组与闭包陷阱足够写一整本书。Vue 的 <code>watch</code> / <code>watchEffect</code> 也有自己的心智负担——尤其在异步取消语义不清晰时。</p>
+<p>我更关心的评审问题是：<strong>数据请求与缓存策略是否在单一模块内可追踪</strong>，而不是用了哪种关键字。</p>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">useArticle</span><span class="token punctuation">(</span>slug<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span>Article <span class="token operator">|</span> <span class="token keyword">null</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> cancelled <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token function">fetchArticle</span><span class="token punctuation">(</span>slug<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cancelled<span class="token punctuation">)</span> <span class="token function">setData</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      cancelled <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>slug<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> data
+<span class="token punctuation">}</span>
+</code></pre>
+<p>示例虽小，却引出共同的纪律：<strong>竞态取消</strong>、<strong>slug 变化时的清理</strong>——这比争论 JSX 还是模板更接近工程质量。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E5%9B%9B%EF%BC%9A%E7%94%9F%E6%80%81%E5%80%BA%EF%BC%9A%E8%B0%81%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%9B%86%E6%88%90%E6%88%90%E6%9C%AC%EF%BC%9F" tabindex="-1">问题四：生态债：谁是真正的集成成本？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E5%9B%9B%EF%BC%9A%E7%94%9F%E6%80%81%E5%80%BA%EF%BC%9A%E8%B0%81%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%9B%86%E6%88%90%E6%88%90%E6%9C%AC%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>动画、表格、国际化、可视化——往往需要第三方库。两边生态都足够成熟到支撑中大型应用，差异在于：<strong>你们的遗留模块最容易对接哪一边</strong>。这不是审美问题，是<strong>迁移路径长度</strong>问题。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E4%BA%94%EF%BC%9A%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5%E6%98%AF%E5%90%A6%E5%90%8C%E8%B4%A8%EF%BC%9F" tabindex="-1">问题五：测试策略是否同质？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E4%BA%94%EF%BC%9A%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5%E6%98%AF%E5%90%A6%E5%90%8C%E8%B4%A8%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>无论是 Testing Library 风格的 DOM 测试，还是组件级快照——关键是团队有没有统一的「关键交互清单」。栈换来换去，若测试策略缺席，质量并不会自动变好。</p>
+<hr>
+<h2 id="%E9%97%AE%E9%A2%98%E5%85%AD%EF%BC%9A%E6%9B%BF%E6%8D%A2%E6%A0%88%E7%9A%84%E7%9C%9F%E5%AE%9E%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" tabindex="-1">问题六：替换栈的真实触发条件是什么？ <a class="header-anchor" href="#%E9%97%AE%E9%A2%98%E5%85%AD%EF%BC%9A%E6%9B%BF%E6%8D%A2%E6%A0%88%E7%9A%84%E7%9C%9F%E5%AE%9E%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F" aria-hidden="true">#</a></h2>
+<p>我会严肃考虑换栈的场景通常只有几类：</p>
+<ul>
+<li><strong>重大交互范式升级</strong>（例如大规模并发编辑需求）；</li>
+<li><strong>招聘市场与外包生态剧烈偏移</strong>；</li>
+<li><strong>现有栈的技术债已经阻塞安全更新</strong>。</li>
+</ul>
+<p>单纯「酷」从来不是理由。</p>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD%EF%BC%9A%E8%8C%83%E5%BC%8F%E4%B9%8B%E4%BA%89%E4%B9%8B%E5%A4%96%E7%9A%84%E5%85%B1%E8%AF%86" tabindex="-1">结语：范式之争之外的共识 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E8%8C%83%E5%BC%8F%E4%B9%8B%E4%BA%89%E4%B9%8B%E5%A4%96%E7%9A%84%E5%85%B1%E8%AF%86" aria-hidden="true">#</a></h2>
+<p>Vue 与 React 都是在解决 UI=f(state) 的不同工程路径。<strong>框架争论永无止境；交付线上稳定版本的人，往往更在意边界清晰与可回滚</strong>。选一个栈，然后对它诚实——比来回跳槽体面得多。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>

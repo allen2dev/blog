@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/blog/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>栈迹手记</title>
+    <script type="module" crossorigin="" src="/blog/assets/app-Dj65TFyx.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/blog/assets/app-7x2Pn6yE.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="layout leap-layout"><header class="leap-site-header" data-v-99cce594=""><h1 class="leap-site-header__title" data-v-99cce594=""><a href="/blog/" class="" data-v-99cce594="">栈迹手记</a></h1><p class="leap-site-header__tagline" data-v-99cce594=""> 十年前端与 Node，工程化、生产力与一点 AI </p></header><div id="banner" class="banner-strip" data-v-de804133=""><div class="banner-strip__inner" data-v-de804133=""><span class="banner-strip__mark" aria-hidden="true" data-v-de804133=""></span><span class="banner-strip__label" data-v-de804133="">快速入口</span><a href="/blog/posts" class="button" data-v-de804133="">全部文章</a><button type="button" class="button btn-random" data-v-de804133=""> 随机一篇 </button><a href="/blog/tags/AI" class="button" data-v-de804133="">AI 专题</a></div></div><div class="wrapper leap-wrapper"><nav class="leap-sidebar leap-sidebar--outline" aria-label="本页目录" data-v-fd403cd9=""><p class="sidebar-heading" data-v-fd403cd9="">目录</p><ul class="outline-list" data-v-fd403cd9=""><!--[--><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9B%9E%E8%B0%83%E4%B8%8E%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E9%A1%B5%E9%9D%A2%E6%98%AF%E4%B8%80%E5%9D%A8%E8%BF%87%E7%A8%8B%E3%80%8D" data-v-fd403cd9="">第一阶段：回调与插件——「页面是一坨过程」 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E2%80%94%E2%80%94%E3%80%8C%E6%96%87%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%BC%80%E5%A7%8B%E5%87%BA%E7%8E%B0%E3%80%8D" data-v-fd403cd9="">第二阶段：模块化——「文件边界开始出现」 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9Amv*-%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E2%80%94%E2%80%94%E3%80%8C%E8%B0%81%E6%8B%A5%E6%9C%89%E7%9C%9F%E7%9B%B8%E3%80%8D" data-v-fd403cd9="">第三阶段：MV* 与数据流——「谁拥有真相」 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E5%B0%81%E8%A3%85%E4%B8%8D%E5%8F%98%E9%87%8F%E3%80%8D" data-v-fd403cd9="">第四阶段：组件——「封装不变量」 #</a></li><li class="outline-item outline-level-2" data-v-fd403cd9=""><a href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%A1%86%E6%9E%B6%E4%BC%9A%E8%BF%87%E6%97%B6%EF%BC%8C%E7%BA%A6%E6%9D%9F%E6%80%9D%E7%BB%B4%E4%B8%8D%E4%BC%9A" data-v-fd403cd9="">结语：框架会过时，约束思维不会 #</a></li><!--]--></ul></nav><section class="leap-section"><article class="article" data-v-1982a48e=""><header class="article-head" data-v-1982a48e=""><h1 data-v-1982a48e="">从 jQuery 到组件化：一条战线上的四个阶段</h1><div class="meta" data-v-1982a48e=""><time datetime="2016-09-12T00:00:00.000Z" data-v-1982a48e="">2016年9月12日</time><span class="meta-item" data-v-1982a48e="">从业手记</span></div><div class="tags" data-v-1982a48e=""><!--[--><a href="/blog/tags/%E5%89%8D%E7%AB%AF" class="tag" data-v-1982a48e="">前端</a><a href="/blog/tags/%E9%9A%8F%E7%AC%94" class="tag" data-v-1982a48e="">随笔</a><!--]--></div></header><div class="markdown-body" data-v-1982a48e=""><p>如果把「前端」看成一条持续迁移的战线，我入行那年听到的最多的声音，大概是「兼容 IE」。那时候页面逻辑常常是：选中 DOM、绑定事件、在回调里改另一块 DOM。jQuery 解决的是<strong>跨浏览器 DOM 操作</strong>；它没有解决、甚至有意回避的问题是：<strong>状态散落在谁的脑子里</strong>。</p>
+<p>这篇文章不想罗列框架编年史——那种表格网上已经够多了。我更想记录一种个人视角：<strong>同一个本质问题——「界面如何与数据保持一致」——在我们这一代人手里，如何被一次次重新表述</strong>。看清这条线，比记住某一年的流行名词有用得多。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9B%9E%E8%B0%83%E4%B8%8E%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E9%A1%B5%E9%9D%A2%E6%98%AF%E4%B8%80%E5%9D%A8%E8%BF%87%E7%A8%8B%E3%80%8D" tabindex="-1">第一阶段：回调与插件——「页面是一坨过程」 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9B%9E%E8%B0%83%E4%B8%8E%E6%8F%92%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E9%A1%B5%E9%9D%A2%E6%98%AF%E4%B8%80%E5%9D%A8%E8%BF%87%E7%A8%8B%E3%80%8D" aria-hidden="true">#</a></h2>
+<p>早期的典型写法，是在 <code>$(document).ready</code> 里注册一长串事件，再在回调里手动同步多处 UI。那时的复杂度主要来自两件事：<strong>DOM 查询成本高</strong>（所以要缓存 jQuery 对象），以及<strong>隐式依赖</strong>（谁先绑定谁后绑定会影响行为）。</p>
+<p>插件生态一度极其繁荣：轮播、表单校验、无限滚动，全能「开箱即用」。问题在于：<strong>插件之间的状态从不往来</strong>。你在 A 插件里改了某个字段，B 插件里的计数不会自动更新——除非你再写一段胶水代码把它们缝在一起。胶水堆多了，就成了俗称的「意大利面」。</p>
+<p>回头看，这一阶段教会我第一件事：<strong>没有单一数据源时，复杂度会指数级膨胀</strong>。不是 jQuery 错了，而是问题规模超过了「过程式补丁」能扛住的上限。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E2%80%94%E2%80%94%E3%80%8C%E6%96%87%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%BC%80%E5%A7%8B%E5%87%BA%E7%8E%B0%E3%80%8D" tabindex="-1">第二阶段：模块化——「文件边界开始出现」 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E2%80%94%E2%80%94%E3%80%8C%E6%96%87%E4%BB%B6%E8%BE%B9%E7%95%8C%E5%BC%80%E5%A7%8B%E5%87%BA%E7%8E%B0%E3%80%8D" aria-hidden="true">#</a></h2>
+<p>CommonJS、AMD、后来 webpack 一统江湖，本质上在做同一件事：<strong>把代码切成文件，让依赖关系显式化</strong>。这一步的意义常被低估——很多人只记得「终于能写 <code>import</code> 了」，但真正换来生产力的是：<strong>你可以在 CI 里静态分析依赖图</strong>，可以在重构时 grep 到每一处引用。</p>
+<p>我还记得第一次把模板从字符串拼写改成「模板函数 + 数据对象」时的解脱感。那不是框架的胜利，而是<strong>边界清晰</strong>的胜利：输入输出写在函数签名附近，评审同事一眼能看懂。</p>
+<p>这一阶段教会我第二件事：<strong>模块边界比语法糖重要</strong>。边界对了，换 loader、换打包器都有路可退；边界糊了，换什么工具都像在废墟上刷漆。</p>
+<hr>
+<h2 id="%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9Amv*-%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E2%80%94%E2%80%94%E3%80%8C%E8%B0%81%E6%8B%A5%E6%9C%89%E7%9C%9F%E7%9B%B8%E3%80%8D" tabindex="-1">第三阶段：MV* 与数据流——「谁拥有真相」 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9Amv*-%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E2%80%94%E2%80%94%E3%80%8C%E8%B0%81%E6%8B%A5%E6%9C%89%E7%9C%9F%E7%9B%B8%E3%80%8D" aria-hidden="true">#</a></h2>
+<p>Backbone、AngularJS、后来的 Redux/MobX、Vuex/Pinia……名词层出不穷，争论也很多。但若剥掉名词，核心问题只有一个：<strong>谁是数据的唯一真相来源（single source of truth）？</strong></p>
+<p>一旦团队在这一点上达成共识，许多争论会自然消失：props 往下流、事件往上冒，或是单向数据流加 pure reducer——都是在不同约束下的工程答案。反过来，若有人在组件内部偷偷 <code>fetch</code> 又写全局变量缓存，另一人用事件总线广播副作用——你用的是最先进的框架，架构仍然是 jQuery 年代的隐性耦合。</p>
+<p>这一阶段沉淀给我最重要的习惯：<strong>每次加功能前先问三个问题——数据存哪？谁有权写？读了会不会 stale？</strong> 十年后的组件库换了几茬，这三个问题还在。</p>
+<hr>
+<h2 id="%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E5%B0%81%E8%A3%85%E4%B8%8D%E5%8F%98%E9%87%8F%E3%80%8D" tabindex="-1">第四阶段：组件——「封装不变量」 <a class="header-anchor" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%84%E4%BB%B6%E2%80%94%E2%80%94%E3%80%8C%E5%B0%81%E8%A3%85%E4%B8%8D%E5%8F%98%E9%87%8F%E3%80%8D" aria-hidden="true">#</a></h2>
+<p>组件化常被误解为「把 HTML 切成小块」。我更愿意把它定义为：<strong>对外暴露窄契约（props/events/slots），对内随意重构</strong>。契约稳定，协作成本就低；契约频繁破坏，团队就会在无尽的重命名与联调里耗尽耐心。</p>
+<p>设计与实现上，这意味着：</p>
+<ol>
+<li><strong>props 尽量「蠢」</strong>：最好是纯数据，而不是「半个 service」。</li>
+<li><strong>副作用收口</strong>：请求、埋点、订阅，集中在明确的生命周期或 composable 里，而不是散落在十个 watch 里。</li>
+<li><strong>样式边界</strong>：scoped、CSS Modules、原子类都可以，关键是「默认不外溢」。</li>
+</ol>
+<hr>
+<h2 id="%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%A1%86%E6%9E%B6%E4%BC%9A%E8%BF%87%E6%97%B6%EF%BC%8C%E7%BA%A6%E6%9D%9F%E6%80%9D%E7%BB%B4%E4%B8%8D%E4%BC%9A" tabindex="-1">结语：框架会过时，约束思维不会 <a class="header-anchor" href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%A1%86%E6%9E%B6%E4%BC%9A%E8%BF%87%E6%97%B6%EF%BC%8C%E7%BA%A6%E6%9D%9F%E6%80%9D%E7%BB%B4%E4%B8%8D%E4%BC%9A" aria-hidden="true">#</a></h2>
+<p>回头看「从 jQuery 到组件化」，并不是一条「淘汰落后」的直线，而是<strong>问题规模变大之后，人类被迫发明更清晰约束的过程</strong>。下一波若又是什么新范式，只要还会问「状态谁拥有、边界在哪」，前面那些年就没有白写。</p>
+<p>这条路上最大的敌人从来不是某个具体框架，而是<strong>侥幸心理</strong>：「先糊上线再说」。糊住的往往不是技术债，而是协作信任的存量——而那才是真正难还的利息。</p>
+</div></article></section></div><footer class="leap-site-footer" data-v-04473f3d=""><p data-v-04473f3d=""> Static blog · Vue 3 &amp; vite-ssg </p></footer></div></div>
+  
+
+</body></html>
