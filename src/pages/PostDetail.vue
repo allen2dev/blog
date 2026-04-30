@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { formatPostDate } from '../utils/date'
 import { postsFull } from 'virtual:posts-data'
 
 const route = useRoute()
@@ -9,6 +10,10 @@ const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
 const post = computed(() => postsFull.find((p) => p.slug === slug.value))
+
+const displayDate = computed(() =>
+  post.value?.date ? formatPostDate(post.value.date) : '',
+)
 
 useHead(() => ({
   title: post.value ? `${post.value.title} · 栈迹手记` : '未找到 · 栈迹手记',
@@ -20,7 +25,7 @@ useHead(() => ({
     <header class="article-head">
       <h1>{{ post.title }}</h1>
       <div class="meta">
-        <time v-if="post.date" :datetime="post.date">{{ post.date }}</time>
+        <time v-if="post.date" :datetime="post.date">{{ displayDate }}</time>
         <span v-if="post.category" class="meta-item">{{ post.category }}</span>
       </div>
       <div v-if="post.tags?.length" class="tags">

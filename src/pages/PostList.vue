@@ -3,6 +3,7 @@ import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import Pagination from '../components/Pagination.vue'
+import { formatPostDate } from '../utils/date'
 import { posts, postsPerPage } from 'virtual:posts-data'
 
 useHead({ title: '文章列表 · 栈迹手记' })
@@ -48,13 +49,7 @@ const slice = computed(() => {
 
 function formatDate(d: string) {
   if (!d) return ''
-  const t = Date.parse(d)
-  if (!Number.isFinite(t)) return d
-  return new Intl.DateTimeFormat('zh-CN', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  }).format(new Date(t))
+  return formatPostDate(d)
 }
 </script>
 
